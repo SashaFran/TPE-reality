@@ -13,6 +13,7 @@ public class MainReality {
 		Participante pp = new Participante("P0", "A0", LocalDate.of(2000, 1, 02));
 		pp.addGenero("Country");
 		pp.addGenero("Pop");
+		pp.addGenero("Pop-Rock");
 		pp.addGenero("Rock");
 		pp.addIdioma("Ingles");
 		pp.addIdioma("Español");
@@ -23,8 +24,8 @@ public class MainReality {
 		pp.addInstrumento("Bateria");
 		
 		Participante p1 = new Participante("P1", "A1", LocalDate.of(2001, 2, 01));
-		p1.addGenero("Country");
 		p1.addGenero("Rock");
+		p1.addGenero("Pop-Rock");
 		p1.addGenero("Pop");
 		p1.addIdioma("Ingles");
 		p1.addIdioma("Italiano");
@@ -53,7 +54,7 @@ public class MainReality {
 		p4.addInstrumento("Piano");
 		p4.addInstrumento("Bateria");
 		
-		Participante p5 = new Participante("P5", "A5", LocalDate.of(2005, 6, 07));
+		Participante p5 = new Participante("P5", "A5", LocalDate.of(2000, 6, 07));
 		p5.addGenero("Pop");
 		p5.addGenero("Pop-Rock");
 		p5.addGenero("Industrial");
@@ -108,47 +109,19 @@ public class MainReality {
 		gg.addAlGrupo(p1);
 		gg.addAlGrupo(pp);
 		gg.addAlGrupo(p5);
-		/*
-		pp.addGenero("Country");
-		pp.addGenero("Pop");
-		pp.addGenero("Rock");
-		p1.addGenero("Country");
-		p1.addGenero("Rock");
-		p5.addGenero("Pop");
-		p5.addGenero("Pop-Rock");
-		p5.addGenero("Industrial");
-		
-		--------------------- IDIOMAS
-		pp.addIdioma("Ingles");
-		pp.addIdioma("Español");
-		pp.addIdioma("Italiano");
-		pp.addIdioma("Aleman");
-		p1.addIdioma("Ingles");
-		p1.addIdioma("Italiano");
-		p5.addIdioma("Ingles");
-		p5.addIdioma("Frances");
-		
-		--------------------- INSTRUMENTOS
-		pp.addInstrumento("Guitarra");
-		pp.addInstrumento("Piano");
-		pp.addInstrumento("Bateria");
-		p1.addInstrumento("Piano");
-		p1.addInstrumento("Guitarra");
-		p5.addInstrumento("Ukelele");
-		p5.addInstrumento("Bajo");
-		 */
-		
+
 		g1.addAlGrupo(p5);
 		g1.addAlGrupo(p6);
-		
-		//Agrego un grupo al equipo.
-		//Con esto se puede agregar solistas y grupos.
-		//Preguntar tema subgrupo.
+
 		cc.addAlEquipo(g1);
 		c1.addAlEquipo(gg);
 
 		
+		TemaMusical fa = new TemaMusical("Rincon de Luz", "Español");
+		fa.addGenero("Rock");
+		fa.addInstrumento("Guitarra");
 		
+
 		
 		System.out.println("Instrumentos del grupo "+ cc.getNombre() + ": " +cc.getInstrumentos());
 		System.out.println("Instrumentos del grupo "+ c1.getNombre() + ": " +c1.getInstrumentos());
@@ -181,6 +154,7 @@ public class MainReality {
 		System.out.println("Idiomas union sin rep: "+gg.getIdiomas());
 		System.out.println("Instrumentos union sin rep: "+gg.getInstrumentos());
 		
+		
 		//----------------------------
 		
 		System.out.println("Participante aptos para batalla (ingles) del coach " + cc.getNombre() +": "+"\n"+cc.partxFiltro(cei2));
@@ -189,8 +163,17 @@ public class MainReality {
 		Criterio cgIdioma = new CriterioIdioma("Aleman");
 		Criterio cgInst = new CriterioInstrumento("Guitarra");
 		System.out.println("Participante aptos para batalla (rock) del coach " + cc.getNombre() +": "+"\n"+cc.partxFiltro(new CriterioAND(cgIdioma, cgInst)));
-		Criterio cgEdad = new CriterioEdad();
+		Criterio cgEdad = new CriterioEdad(18);
 		System.out.println("Participante aptos para batalla (mayor edad) del coach " + cc.getNombre() +": "+"\n"+cc.partxFiltro(cgEdad));
+		
+		//------------------------------
+		
+		Criterio ccc= new CriterioTemaMusical(fa);
+		System.out.println("Canta tema Musical "+ cc.getNombre()+": " +cc.partxFiltro(ccc));
+		
+		//-------------------------------
+		
+		System.out.println("Batallas");
 		
 		
 		

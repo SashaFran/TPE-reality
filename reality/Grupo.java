@@ -4,9 +4,6 @@ import java.util.ArrayList;
 
 import reality.Criterios.Criterio;
 
-//generos (interseccion)
-//edad
-//idiomas (union)
 
 public class Grupo extends ElementoReality{
 
@@ -32,7 +29,7 @@ public class Grupo extends ElementoReality{
 	public int getSumaEdad() {
 		int total = 0;
 		for (ElementoReality e: participantes)
-			total += e.getEdad();
+			total += e.getSumaEdad();
 		return total;
 	}
 	
@@ -44,8 +41,6 @@ public class Grupo extends ElementoReality{
 		return total;
 	}
 
-
-	//Union de los idiomas.
 	@Override
 	public ArrayList<String> getIdiomas() {
 	 	ArrayList<String> aux = new ArrayList<>();
@@ -74,31 +69,41 @@ public class Grupo extends ElementoReality{
 		return aux;
 	}
 
-	//interseccion de los generos, no todos.
 	@Override
 	public ArrayList<String> getGeneros() {
 		ArrayList <String> generos = new ArrayList <>();
 		generos.addAll((participantes.get(0)).getGeneros());
-	//	for(ElementoReality p: participantes){
-	//		System.out.println("Participantes: " +p.getGeneros());
-	//	}
+		for (ElementoReality p : participantes) {
+			ArrayList <String> aux = p.getGeneros();
+			ArrayList<String> paraEliminar = new ArrayList<>(); 
+			for (String g: generos) {
+				if (!aux.contains(g)) {
+					paraEliminar.add(g);
+				}
+			}
+			for(String pp: paraEliminar){
+				generos.remove(pp);
+			}
+		}
 		return generos;
 	}
 
 	@Override
-	public ArrayList<Participante> partxFiltro(Criterio f) {
-		ArrayList<Participante> p = new ArrayList<>();
-		//if(f.cumple(p)){
-		for(ElementoReality e: participantes)
-			p.addAll(e.partxFiltro(f));
+	public ArrayList<ElementoReality> partxFiltro(Criterio f) {
+		ArrayList<ElementoReality> p = new ArrayList<>();
+		if(f.cumple(this)){
+			p.add(this);
+		}else{
+			for(ElementoReality e: participantes)
+				p.addAll(e.partxFiltro(f));
+		}
 		return p;
-		
 	}
 
 
 	@Override
 	public String toString() {
-		return "Grupo: "+this.getNombreGrupo() + "\nParticipantes que lo componen: " + participantes;
+		return "Grupo: "+this.getNombreGrupo() + "\nParticipantes que lo componen: " + "\n"+participantes;
 	}
 	
 	

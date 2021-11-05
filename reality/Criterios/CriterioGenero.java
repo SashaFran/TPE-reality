@@ -17,7 +17,7 @@ public class CriterioGenero extends Criterio{
 
 	@Override
 	public boolean cumple(ElementoReality p1) {
-		return p1.contieneGenero(genero);
+		return p1.contieneGeneros(genero);
 	}
 
 	

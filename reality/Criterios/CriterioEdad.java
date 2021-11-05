@@ -4,14 +4,19 @@ import reality.ElementoReality;
 
 public class CriterioEdad extends Criterio {
 
-	final int EDAD = 18;
+	private int limiteEdad;
 	
-	public CriterioEdad(){
-		
+	public CriterioEdad(int edad){
+		this.limiteEdad = edad;
 	}
+	
+	public int getLimiteEdad() {
+		return limiteEdad;
+	}
+
 	@Override
 	public boolean cumple(ElementoReality p1) {
-		return p1.getEdad() > EDAD;
+		return p1.getEdad() > limiteEdad;
 	}
 
 }

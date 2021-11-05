@@ -89,8 +89,8 @@ public class Participante extends ElementoReality{
 	}
 	
 	@Override
-	public ArrayList<Participante> partxFiltro(Criterio f) {
-		ArrayList<Participante> p = new ArrayList<>();
+	public ArrayList<ElementoReality> partxFiltro(Criterio f) {
+		ArrayList<ElementoReality> p = new ArrayList<>();
         if (f.cumple(this))
             p.add(this);
         return p;

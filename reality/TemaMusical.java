@@ -2,6 +2,7 @@ package reality;
 
 import java.util.ArrayList;
 
+
 public class TemaMusical {
 
 	private String titulo;
@@ -45,13 +46,7 @@ public class TemaMusical {
 	}
 	
 	
-
-	/*
-	 * @Override public boolean equals(Object obj) { try{ TemaMusical t =
-	 * (TemaMusical) obj; return this.getGeneros().equals(t) &&
-	 * this.getIdioma().equals(t) && this.getInstrumentos().equals(t) &&
-	 * this.getTitulo().equals(t); }catch(Exception e){ return false; } }
-	 */
+	
 	
 	@Override
 	public boolean equals(Object obj) {

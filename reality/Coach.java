@@ -5,7 +5,7 @@ import java.util.Collections;
 
 import reality.Criterios.Criterio;
 import reality.ElementoReality;
-import reality.Participante;
+import reality.TemaMusical;
 
 public class Coach extends ElementoReality{
 
@@ -32,17 +32,10 @@ public class Coach extends ElementoReality{
 		}
 	}
 	
-	public ArrayList<Participante> participanteBatalla(Criterio criterio){
-		ArrayList<Participante> aptos = new ArrayList<>();
-		for (ElementoReality p : equipo){
-			aptos.addAll(p.partxFiltro(criterio));
-			}
-		return aptos;
-	}
 	
 	@Override
-	public ArrayList<Participante> partxFiltro(Criterio f) {
-		ArrayList<Participante> p = new ArrayList<>();
+	public ArrayList<ElementoReality> partxFiltro(Criterio f) {
+		ArrayList<ElementoReality> p = new ArrayList<>();
 		for (ElementoReality e: equipo){
 			p.addAll(e.partxFiltro(f));
 		}
@@ -110,7 +103,17 @@ public class Coach extends ElementoReality{
 		 return total;
 	}
 
-
+	public boolean puedeTocar(TemaMusical t){
+		ArrayList<ElementoReality> ee = new ArrayList<>();
+		for(ElementoReality e: equipo){
+			if(e.getGeneros().contains(t.getGeneros())){
+				ee.add(e);
+				
+			}
+		}
+			
+		return true;
+	}
 
 	
 

@@ -1,6 +1,6 @@
 package reality.Criterios;
 
-import reality.Participante;
+import reality.ElementoReality;
 
 public class CriterioInstrumento extends Criterio {
 
@@ -14,7 +14,7 @@ public class CriterioInstrumento extends Criterio {
 		return instrumento;
 	}
 	@Override
-	public boolean cumple(Participante p1) {
+	public boolean cumple(ElementoReality p1) {
 		return p1.contieneInstrumento(instrumento);
 	}
 

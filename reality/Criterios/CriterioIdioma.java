@@ -1,7 +1,7 @@
 package reality.Criterios;
 
 
-import reality.Participante;
+import reality.ElementoReality;
 
 public class CriterioIdioma extends Criterio{
 
@@ -16,7 +16,7 @@ public class CriterioIdioma extends Criterio{
 	}
 
 	@Override
-	public boolean cumple(Participante p1) {
+	public boolean cumple(ElementoReality p1) {
 		return p1.contieneIdioma(idioma);
 	}
 
