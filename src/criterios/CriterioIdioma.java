@@ -1,5 +1,9 @@
 package Criterios;
-
+/*
+Para las batallas, se desea que cada uno de los coachs/jurados pueda buscar entre sus participantes
+integrantes, bandas o grupos que :
+● Canten en un determinado idioma, por ejemplo “inglés”...
+ */
 
 import reality.ElementoReality;
 
@@ -9,10 +13,6 @@ public class CriterioIdioma extends Criterio{
 	
 	public CriterioIdioma(String idioma){
 		this.idioma = idioma;
-	}
-	
-	public String getIdioma() {
-		return idioma;
 	}
 
 	@Override

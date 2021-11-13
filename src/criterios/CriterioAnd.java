@@ -1,5 +1,10 @@
 package Criterios;
-
+/*
+Para las batallas, se desea que cada uno de los coachs/jurados pueda buscar entre sus participantes
+integrantes, bandas o grupos que :
+● Canten en un determinado idioma y toquen un instrumento específico. Por ejemplo, “Aleman”
+y “Guitarra”...
+ */
 import reality.ElementoReality;
 
 public class CriterioAND extends Criterio {

@@ -8,11 +8,40 @@ import Criterios.Criterio;
 
 public abstract class ElementoReality {
 
+
+	private String nombre;
+
+
+	public ElementoReality(String nombre) {
+		this.nombre = nombre;
+	}
+
+
 	public abstract ArrayList<String> getGeneros();
+
 	public abstract ArrayList<String> getIdiomas();
+
 	public abstract ArrayList<String> getInstrumentos();
-    public abstract ArrayList<ElementoReality> partxFiltro(Criterio f);
-    
+
+	public abstract int getSumaEdades();
+
+	public abstract int cantPart();
+
+	public abstract ArrayList<ElementoReality> getListado(Criterio c);  //cambio nombre metodo partxFilt
+
+	public abstract ArrayList<Participante> getParticipantes(Criterio c);
+
+	public abstract String toString(); //ver si es necesario
+
+	public String getNombre(){
+		return this.nombre;
+	}
+
+	public int getEdad(){
+		int promedio = this.getSumaEdades()/this.cantPart();
+		return promedio;
+	}
+
 	public boolean contieneInstrumento(String instrumento) {
 		ArrayList<String> instrumentos = this.getInstrumentos();
 		return (instrumentos.contains(instrumento));
@@ -23,26 +52,9 @@ public abstract class ElementoReality {
 		return (idiomas.contains(idioma));
 	}
 	
-	public boolean contieneGeneros(String genero) {
+	public boolean contieneGenero(String genero) {
 		ArrayList<String> generos = this.getGeneros();
 		return (generos.contains(genero));
 	}
 
-	public abstract int getSumaEdad();
-	public abstract int cantPart();
-	
-	public ArrayList<ElementoReality> partxFiltro(Criterio f, Comparator<ElementoReality> c){
-		ArrayList<ElementoReality> temp = this.partxFiltro(f);
-		Collections.sort(temp, c);
-		return temp;
-	}
-	
-	public int getEdad(){
-		int promedio = this.getSumaEdad()/this.cantPart();
-		return promedio;
-	}
-	
-	public abstract ArrayList <Participante> getParticipantes(Criterio c);
-	
-	
 }

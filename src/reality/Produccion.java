@@ -7,7 +7,7 @@ import Criterios.Criterio;
 
 public class Produccion{
 
-	private ArrayList<ElementoReality> participantes;
+	//private ArrayList<ElementoReality> participantes;  este no debería estar
 	private ArrayList<Coach> coaches;
 	private ArrayList<TemaMusical> temas;
 	
@@ -35,10 +35,10 @@ public class Produccion{
 			coaches.add(cc);
 		}
 	}
-	
-	public ArrayList<ElementoReality> getParticipantes() {
-		return new ArrayList<ElementoReality>(participantes);
-	}
+
+//	public ArrayList<ElementoReality> getParticipantes() {
+//		return new ArrayList<ElementoReality>(participantes);
+//	}
 
 	public ArrayList<Coach> getCoaches() {
 		return new ArrayList<Coach>(coaches);
@@ -47,7 +47,7 @@ public class Produccion{
 	public ArrayList<ElementoReality> getListado(Criterio c) {
 		ArrayList<ElementoReality> posibles = new ArrayList<>();
 		for (Coach c1 : coaches) {
-			posibles.addAll(c1.partxFiltro(c));
+			posibles.addAll(c1.getListado(c));			//cambio nombre al método
 		}
 		return posibles;
 	}

@@ -5,77 +5,25 @@ import java.util.ArrayList;
 import Criterios.Criterio;
 
 
-public class Grupo extends ElementoReality{
+public class Grupo extends ElementoCompuesto{
 
-	private ArrayList<ElementoReality> participantes;
-	private String nombreGrupo;
-	
-	public Grupo(String n) {
-		this.participantes = new ArrayList<>();
-		this.nombreGrupo = n;
+	public Grupo(String nombre) {
+		super(nombre);
 	}
 
-	public void addAlGrupo(ElementoReality e){
-		if(!participantes.contains(e))
-			participantes.add(e);
-	}
-
-
-	public String getNombreGrupo() {
-		return nombreGrupo;
-	}
-
-	@Override
-	public int getSumaEdad() {
-		int total = 0;
-		for (ElementoReality e: participantes)
-			total += e.getSumaEdad();
-		return total;
-	}
-	
-	@Override
-	public int cantPart() {
-		int total = 0;
-		for (ElementoReality e: participantes)
-			total += e.cantPart();
-		return total;
-	}
-
-	@Override
-	public ArrayList<String> getIdiomas() {
-	 	ArrayList<String> aux = new ArrayList<>();
-		for(ElementoReality e: participantes){
-			ArrayList<String> union = e.getIdiomas();
-			for(String s: union){
-				if(!aux.contains(s)){
-					aux.add(s);
-				}
-			}
-		}
-		return aux;
-	}
-
-	@Override
-	public ArrayList<String> getInstrumentos() {
-	 	ArrayList<String> aux = new ArrayList<>();
-		for(ElementoReality e: participantes){
-			ArrayList<String> union = e.getInstrumentos();
-			for(String s: union){
-				if(!aux.contains(s)){
-					aux.add(s);
-				}
-			}
-		}
-		return aux;
-	}
-
+	/*
+    Los géneros de preferencia se calculan como la intersección de los géneros de preferencia
+    de todos sus miembros. Por ejemplo si un grupo tienen dos miembros A y B, el integrante A
+    tiene preferencias {g1,g2,g3,g4} y el integrante B las preferencias {g1,g4,g7,g11} el grupo
+    tendrá como preferencias de géneros {g1, g4}...
+ 	*/
 	@Override
 	public ArrayList<String> getGeneros() {
 		ArrayList <String> generos = new ArrayList <>();
 		generos.addAll((participantes.get(0)).getGeneros());
 		for (ElementoReality p : participantes) {
 			ArrayList <String> aux = p.getGeneros();
-			ArrayList<String> paraEliminar = new ArrayList<>(); 
+			ArrayList<String> paraEliminar = new ArrayList<>();
 			for (String g: generos) {
 				if (!aux.contains(g)) {
 					paraEliminar.add(g);
@@ -88,30 +36,32 @@ public class Grupo extends ElementoReality{
 		return generos;
 	}
 
+	/*
+	Aclaraciones sobre la búsqueda de participantes:
+		1. Si una banda o grupo cumple con lo que está buscando el jurado, se debe retornar la banda
+		o el grupo entero (respetando la organización interna de grupos y subgrupos)
+		2. Si una banda o grupo NO cumple con lo que está buscando el jurado, se buscan posibles
+		miembros de la banda que sí cumplan y se retorna a estos miembros.
+		3. El mecanismo anterior se repite en cada nivel organizativo que tenga la banda o grupo.
+	 */
 	@Override
-	public ArrayList<ElementoReality> partxFiltro(Criterio f) {
-		ArrayList<ElementoReality> p = new ArrayList<>();
-		if(f.cumple(this)){
-			p.add(this);
+	public ArrayList<ElementoReality> getListado(Criterio c) {
+		ArrayList<ElementoReality> listado = new ArrayList<>();
+		if(c.cumple(this)){
+			listado.add(this);
 		}else{
 			for(ElementoReality e: participantes)
-				p.addAll(e.partxFiltro(f));
+				listado.addAll(e.getListado(c));
 		}
-		return p;
+		return listado;
 	}
-
 
 	@Override
 	public String toString() {
-		return "Grupo: "+this.getNombreGrupo() + "\nParticipantes que lo componen: " + "\n"+participantes;
+		return "Grupo: "
+				+ this.getNombreGrupo()
+				+ "\nParticipantes que lo componen: "
+				+ "\n"+ participantes;
 	}
 
-	@Override
-	public ArrayList<Participante> getParticipantes(Criterio c) {		
-		ArrayList <Participante> participante = new ArrayList<>();	
-		for (ElementoReality e : participantes) {
-				participante.addAll(e.getParticipantes(c));
-		}
-		return participante;
-	}
 }

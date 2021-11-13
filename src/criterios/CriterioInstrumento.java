@@ -9,10 +9,7 @@ public class CriterioInstrumento extends Criterio {
 	public CriterioInstrumento(String instrumento){
 		this.instrumento = instrumento;
 	}
-	
-	public String getInstrumento() {
-		return instrumento;
-	}
+
 	@Override
 	public boolean cumple(ElementoReality p1) {
 		return p1.contieneInstrumento(instrumento);

@@ -8,7 +8,12 @@ import Criterios.Criterio;
 
 public class Participante extends ElementoReality{
 
-	private String nombre, apellido;
+	/*
+		De los participantes, se registra su
+	nombre, apellido, edad, géneros musicales de preferencia, idiomas en los que
+	canta y los instrumentos que toca.
+	 */
+	private String apellido;
 	private LocalDate fechaDeNacimiento;
 	private ArrayList<String> generosFav;
 	private ArrayList<String> instrumentos;
@@ -16,51 +21,36 @@ public class Participante extends ElementoReality{
 	
 	
 	public Participante(String nombre, String apellido, LocalDate nacimiento){
-		this.nombre = nombre;
+		super(nombre);
 		this.apellido = apellido;
 		this.fechaDeNacimiento = nacimiento;
 		generosFav = new ArrayList<>();
 		instrumentos = new ArrayList<>();
 		idiomas = new ArrayList<>();
 	}
-	
-	public int getSumaEdad(){
-		LocalDate today = LocalDate.now();
-	      return today.getYear() - fechaDeNacimiento.getYear();
-	}
 
-	public String getNombre() {
-		return nombre;
-	}
 
 	public String getApellido() {
 		return apellido;
 	}
 
-	public LocalDate getFechaDeNacimiento() {
-		return fechaDeNacimiento;
+	@Override
+	public int getSumaEdades(){
+		LocalDate today = LocalDate.now();
+		return today.getYear() - fechaDeNacimiento.getYear();
 	}
-	
-	/*
-	 * 
-	 * Ahora es parte del abstracto
-	 * 
-	public boolean contieneGenero(String g){
-		return this.generosFav.contains(g);
-	}
-	
-	public boolean contieneIdioma(String g){
-		return this.idiomas.contains(g);
-	}
-	
-	public boolean contieneInstrumento(String g){
-		return this.instrumentos.contains(g);
-	}*/
 
+	@Override
+	public ArrayList<String> getGeneros() {
+		return new ArrayList<String>(generosFav);
+	}
+
+	@Override
 	public ArrayList<String> getInstrumentos() {
 		return new ArrayList<String>(instrumentos);
 	}
-	
+
+	@Override
 	public ArrayList<String> getIdiomas() {
 		return new ArrayList<String>(idiomas);
 	}
@@ -82,28 +72,34 @@ public class Participante extends ElementoReality{
 			idiomas.add(idi);
 		}
 	}
-	
+
+	@Override
 	public int cantPart(){
 		return 1;
 	}
 
 	@Override
-	public ArrayList<String> getGeneros() {
-		return new ArrayList<String>(generosFav);
+	public ArrayList<ElementoReality> getListado(Criterio c) {
+		ArrayList<ElementoReality> participante = new ArrayList<>();
+        if (c.cumple(this))
+            participante.add(this);
+        return participante;
 	}
-	
+
 	@Override
-	public ArrayList<ElementoReality> partxFiltro(Criterio f) {
-		ArrayList<ElementoReality> p = new ArrayList<>();
-        if (f.cumple(this))
-            p.add(this);
-        return p;
+	public ArrayList<Participante> getParticipantes(Criterio c) {
+		ArrayList <Participante> participante = new ArrayList<>();
+		if ( c.cumple(this))
+			participante.add(this);
+		return participante;
 	}
-	
-	
-	
-	
-	
+
+	@Override
+	public String toString(){
+		return "Nombre y Apellido: "+ this.getNombre()+" "+this.getApellido()+"\n";
+	}
+
+
 	//------------------------------------------------------------------------------------------------------
 	@Override
 	public boolean equals(Object obj) {
@@ -118,19 +114,5 @@ public class Participante extends ElementoReality{
 			return false;
 		}
 	}
-	
-	public String toString(){
-		return "Nombre y Apellido: "+ this.getNombre()+" "+this.getApellido()+"\n";
-	}
 
-	@Override
-	public ArrayList<Participante> getParticipantes(Criterio c) {
-		ArrayList <Participante> participante = new ArrayList<>();		
-		if ( c.cumple(this))
-			participante.add(this);
-		return participante;	
-	}
-
-
-	
 }

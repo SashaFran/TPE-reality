@@ -1,9 +1,11 @@
 package reality;
 
+/*
+Cada tema musical tiene un título, un idioma, una lista de géneros musicales a los que pertenece y una
+lista de instrumentos musicales necesarios para interpretarlo durante el concurso (puede ser vacía)...
+ */
 import java.util.ArrayList;
-
 import criterioTm.CriterioTm;
-
 
 public class TemaMusical {
 
@@ -18,16 +20,9 @@ public class TemaMusical {
 		this.idioma = idioma;
 		generos = new ArrayList<>();
 		instrumentos = new ArrayList<>();
+		this.criterio = new CriterioMinimo();
 	}
 
-	public void setCriterio(CriterioTm criterio) {
-		this.criterio = criterio;
-	}
-	
-	public boolean cumple (ElementoReality p) {
-		return criterio.cumple(p, this);
-	}
-	
 	public String getTitulo() {
 		return titulo;
 	}
@@ -55,10 +50,15 @@ public class TemaMusical {
 			instrumentos.add(inst);
 		}
 	}
-	
-	
-	
-	
+
+	public void setCriterio(CriterioTm criterio) {
+		this.criterio = criterio;
+	}
+
+	public boolean cumple(ElementoReality p) {
+		return criterio.cumple(p, this);
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -92,7 +92,7 @@ public class TemaMusical {
 	}
 
 	public String toString(){
-		return "Tema musical: " + "\nTitulo: "+this.getTitulo()
+		return "Tema musical: " +"\nTitulo: "+this.getTitulo()
 								+"\nIdioma: "+this.getIdioma()
 								+"\nGeneros: "+this.getGeneros()
 								+"\nInstrumentos: "+this.getInstrumentos();

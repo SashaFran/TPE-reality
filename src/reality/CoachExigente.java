@@ -4,18 +4,20 @@ import Criterios.Criterio;
 
 public class CoachExigente extends Coach {
 
+
 	private Criterio c;
-	
-	public CoachExigente(String nombre, String apellido, Criterio c) {
-		super(nombre, apellido);
+
+
+	public CoachExigente(String nombre, Criterio c) {
+		super(nombre);
 		this.c = c;
 	}
-	
-	public void addAlEquipo(ElementoReality p){
+
+	@Override
+	public void add(ElementoReality p){
 		if (c.cumple(p)) {
-			super.addAlEquipo(p);
+			super.add(p);
 		}
 	}
 
-	
 }
