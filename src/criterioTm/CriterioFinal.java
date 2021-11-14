@@ -40,7 +40,7 @@ public class CriterioFinal extends CriterioTm {
 							participantes.add(p);
 					}
 				}
-				if (participantes.size() >= min)
+				if (participantes.size() >= minMiembros)
 					return true;
 			} else {
 				return true; //Dado que la lista de instrumentos puede estar vacía, es ese caso,

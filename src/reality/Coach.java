@@ -2,6 +2,8 @@ package reality;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+
 import Criterios.Criterio;
 
 public class Coach extends ElementoCompuesto {
@@ -17,7 +19,7 @@ public class Coach extends ElementoCompuesto {
 	 */
 	public ArrayList<String> getGeneros(){
 		ArrayList<String> union = new ArrayList<>();
-		for(ElementoReality p: equipo){
+		for(ElementoReality p: participantes){
 			ArrayList<String> aux = p.getGeneros();
 			for(String s: aux){
 				if(!union.contains(s)){
@@ -35,7 +37,7 @@ public class Coach extends ElementoCompuesto {
 	 */
 	public ArrayList<ElementoReality> getListado(Criterio c) {
 		ArrayList<ElementoReality> listado = new ArrayList<>();
-		for (ElementoReality e: equipo){
+		for (ElementoReality e: participantes){
 			listado.addAll(e.getListado(c));
 		}
 		return listado;
@@ -47,17 +49,17 @@ public class Coach extends ElementoCompuesto {
 		de sus participantes ordenado de forma tal que los primeros miembros del listado sean los que les
 		ganen o empaten con los siguientes miembros (siempre dentro del mismo equipo del juez).
 	 */
-	public ArrayList<ElementoReality> getListado(Criterio c,  Comparator<ElementoReality> c) {
+	public ArrayList<ElementoReality> getListado(Criterio c,  Comparator<ElementoReality> orden) {
 		ArrayList<ElementoReality> listado = this.getListado(c);
-		Collections.sort(listado, c);
+		Collections.sort(listado, orden);
 		return listado;
 	}
 
 	@Override
 	public String toString() {
-		return "\nNombre y Apellido: "+this.getNombre()+" "+this.getApellido()+
+		return "\nNombre: "+this.getNombre()+" "+
 				"\nCantidad de participantes en equipo: "+this.cantPart()
-				+"\nEquipo: "+"\n"+this.equipo;
+				+"\nEquipo: "+"\n"+this.participantes;
 	}
 
 

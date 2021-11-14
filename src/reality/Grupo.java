@@ -59,7 +59,7 @@ public class Grupo extends ElementoCompuesto{
 	@Override
 	public String toString() {
 		return "Grupo: "
-				+ this.getNombreGrupo()
+				+ this.getNombre()
 				+ "\nParticipantes que lo componen: "
 				+ "\n"+ participantes;
 	}

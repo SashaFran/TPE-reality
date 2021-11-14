@@ -7,7 +7,7 @@ import Criterios.Criterio;
 
 public class Produccion{
 
-	//private ArrayList<ElementoReality> participantes;  este no debería estar
+	private ArrayList<ElementoReality> participantes;  //este no debería estar
 	private ArrayList<Coach> coaches;
 	private ArrayList<TemaMusical> temas;
 	
