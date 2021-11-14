@@ -7,9 +7,11 @@ import Criterios.Criterio;
 
 public class Grupo extends ElementoCompuesto{
 
+
 	public Grupo(String nombre) {
 		super(nombre);
 	}
+
 
 	/*
     Los géneros de preferencia se calculan como la intersección de los géneros de preferencia
@@ -62,6 +64,21 @@ public class Grupo extends ElementoCompuesto{
 				+ this.getNombreGrupo()
 				+ "\nParticipantes que lo componen: "
 				+ "\n"+ participantes;
+	}
+
+	//------------------------------------------------------------------------------------------------------
+	@Override
+	public boolean equals(Object obj) {
+		try{
+			Grupo g = (Grupo) obj;
+			return this.getNombre().equals(p.getNombre())
+					&& this.getParticipantes().equals(p.getParticipantes())
+					&& this.getInstrumentos().equals(p.getInstrumentos())
+					&& this.getIdiomas().equals(p.getIdiomas())
+					&& this.getGeneros().equals(p.getGeneros());
+		}catch(Exception e){
+			return false;
+		}
 	}
 
 }

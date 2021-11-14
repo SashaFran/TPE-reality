@@ -24,9 +24,13 @@ public abstract class ElementoCompuesto extends ElementoReality {
 	}
 
 
-	public void add(ElementoReality e){
-		if(!participantes.contains(e))
+	public boolean add(ElementoReality e){
+		if(!participantes.contains(e)) {
 			participantes.add(e);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/*  ------- Participante:

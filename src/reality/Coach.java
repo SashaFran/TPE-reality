@@ -11,10 +11,12 @@ public class Coach extends ElementoCompuesto {
 		super(nombre);
 	}
 
-	/*	Para una mejor organización, cada coach/jurado desea poder obtener:
+
+	/*
+		Para una mejor organización, cada coach/jurado desea poder obtener:
 		● Un listado de géneros de preferencia de los participantes de su equipo (sin repetidos y
 		ordenados alfabéticamente)...
-	 */
+    */
 	public ArrayList<String> getGeneros(){
 		ArrayList<String> union = new ArrayList<>();
 		for(ElementoReality p: equipo){
@@ -47,10 +49,16 @@ public class Coach extends ElementoCompuesto {
 		de sus participantes ordenado de forma tal que los primeros miembros del listado sean los que les
 		ganen o empaten con los siguientes miembros (siempre dentro del mismo equipo del juez).
 	 */
-	public ArrayList<ElementoReality> getListado(Criterio c,  Comparator<ElementoReality> c) {
-		ArrayList<ElementoReality> listado = this.getListado(c);
-		Collections.sort(listado, c);
-		return listado;
+
+//	private ArrayList<ElementoReality> getListado(Criterio c,  Comparator<ElementoReality> c) {
+//		ArrayList<ElementoReality> listado = this.getListado(c);
+//		Collections.sort(listado, c);
+//		return listado;
+//	}
+
+	public ElementoReality getBatallantes(Comparator<ElementoReality> c){
+		Collections.sort(this.participantes, c);
+		return this.participantes.get(0);
 	}
 
 	@Override
