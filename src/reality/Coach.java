@@ -58,6 +58,7 @@ public class Coach extends ElementoCompuesto {
 
 	public ElementoReality getBatallantes(Comparator<ElementoReality> c){
 		Collections.sort(this.participantes, c);
+		Collections.reverseOrder(seleccionados);
 		return this.participantes.get(0);
 	}
 

@@ -71,6 +71,7 @@ public class Produccion{
 			seleccionados.add(c.getBatallante(comp));
 		}
 		Collections.sort(seleccionados, comp);
+		Collections.reverseOrder(seleccionados);//Sort ordena por defecto de menor a mayor
 		return seleccionados;
 	}
 	
