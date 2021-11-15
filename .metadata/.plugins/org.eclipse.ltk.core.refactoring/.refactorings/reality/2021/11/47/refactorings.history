@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;criteriosTm&apos; to &apos;criterioTm&apos;&#x0A;- Original project: &apos;reality&apos;&#x0A;- Original element: &apos;reality/src/criteriosTm&apos;&#x0A;- Renamed element: &apos;reality/src/criterioTm&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;criteriosTm&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;criteriosTm" name="criterioTm" qualified="false" references="true" stamp="1637004635889" textual="false" version="1.0"/>
+</session>

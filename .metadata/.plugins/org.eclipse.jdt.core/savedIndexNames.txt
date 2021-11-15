@@ -1,0 +1,3 @@
+INDEX VERSION 1.131+/Users/juli/Desktop/TPE-reality/.metadata/.plugins/org.eclipse.jdt.core
+5121048.index
+2526307323.index
