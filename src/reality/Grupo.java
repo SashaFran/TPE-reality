@@ -1,8 +1,7 @@
 package reality;
 
 import java.util.ArrayList;
-
-import Criterios.Criterio;
+import criterios.Criterio;
 
 
 public class Grupo extends ElementoCompuesto{
@@ -61,7 +60,7 @@ public class Grupo extends ElementoCompuesto{
 	@Override
 	public String toString() {
 		return "Grupo: "
-				+ this.getNombreGrupo()
+				+ this.getNombre()
 				+ "\nParticipantes que lo componen: "
 				+ "\n"+ participantes;
 	}
@@ -71,11 +70,11 @@ public class Grupo extends ElementoCompuesto{
 	public boolean equals(Object obj) {
 		try{
 			Grupo g = (Grupo) obj;
-			return this.getNombre().equals(p.getNombre())
-					&& this.getParticipantes().equals(p.getParticipantes())
-					&& this.getInstrumentos().equals(p.getInstrumentos())
-					&& this.getIdiomas().equals(p.getIdiomas())
-					&& this.getGeneros().equals(p.getGeneros());
+			return this.getNombre().equals(g.getNombre())
+					//&& this.getParticipantes().equals(g.getParticipantes())
+					&& this.getInstrumentos().equals(g.getInstrumentos())
+					&& this.getIdiomas().equals(g.getIdiomas())
+					&& this.getGeneros().equals(g.getGeneros());
 		}catch(Exception e){
 			return false;
 		}

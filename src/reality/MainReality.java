@@ -1,9 +1,10 @@
 package reality;
 
 import java.time.LocalDate;
-
-import Criterios.*;
+import java.util.ArrayList;
+import criterios.*;
 import criterioTm.*;
+import comparadores.*;
 
 public class MainReality {
 
@@ -39,10 +40,10 @@ public class MainReality {
 		Criterio cIdioma2 = new CriterioIdioma("Ingles");
 
 		//----------- coaches ------------------------
-		Coach c0 = new Coach("C0", "C0");
-		Coach c1 = new Coach("C1", "C1");
-		Coach c2 = new CoachExigente("C2", "C2", new CriterioAnd(cIdioma0, new CriterioAND(cGenero0, cInstrumento0)));
-		Coach c3 = new CoachExigente("C3", "C3", new CriterioAnd(cGenero1, new CriterioAnd(cInstrumento1,
+		Coach c0 = new Coach("C0");
+		Coach c1 = new Coach("C1");
+		Coach c2 = new CoachExigente("C2",new CriterioAnd(cIdioma0, new CriterioAnd(cGenero0, cInstrumento0)));
+		Coach c3 = new CoachExigente("C3", new CriterioAnd(cGenero1, new CriterioAnd(cInstrumento1,
 												 new CriterioAnd(cIdioma1, cIdioma2))));
 
 		prod.addCoach(c0);
@@ -132,50 +133,40 @@ public class MainReality {
 		g1.add(p5);
 		g1.add(p6);
 
-		prod.add(g0);
-		prod.add(g1);
+		prod.addParticipante(g0);
+		prod.addParticipante(g1);
 
 		//------------------------------------------------------------------------------------------
+		System.out.println("---------------------------------------------");
+		System.out.println("Grupos");
+		System.out.println("Cantidad de participantes, grupo " + g0.getNombre()+": "+g0.cantPart());
+		System.out.println("Cantidad de participantes, grupo " + g1.getNombre()+": "+g1.cantPart());
+
 		System.out.println("Instrumentos del grupo "+ g0.getNombre() + ": " +g0.getInstrumentos());
 		System.out.println("Instrumentos del grupo "+ g1.getNombre() + ": " +g1.getInstrumentos());
 		
 		System.out.println("Idiomas del grupo "+ g0.getNombre() + ": " + g0.getIdiomas());
 		System.out.println("Idiomas del grupo "+ g1.getNombre() + ": " + g1.getIdiomas());
 		
-		System.out.println("Generos por grupo: " + g0.getNombre() + ": "+ g0.getGeneros());
-		System.out.println("Generos por grupo: " + g1.getNombre() + ": "+ g1.getGeneros());
+		System.out.println("Generos del grupo " + g0.getNombre() + " (intersección): "+ g0.getGeneros());
+		System.out.println("Generos del grupo " + g1.getNombre() + " (intersección): "+ g1.getGeneros());
 		
 		System.out.println("Promedio de edad, grupo " + g0.getNombre()+": "+g0.getEdad());
 		System.out.println("Promedio de edad, grupo " + g1.getNombre()+": "+g1.getEdad());
-		
+
+		//------------------ prueba de aceptación coach exigente ------------
+//		System.out.println("---------------------------------------------");
+//		System.out.println("Coach exigente:" + c3);
+//		c3.add(p0);
+//		c3.add(p1);
+//		System.out.println("Coach exigente:" + c3);
+
+		//------------------- detalle de equipos por coach----------------------------------------------
 		System.out.println("---------------------------------------------");
-		System.out.println("Generos interseccion: " + g0.getGeneros());
-		System.out.println("Idiomas union sin rep: " + g0.getIdiomas());
-		System.out.println("Instrumentos union sin rep: " + g0.getInstrumentos());
-
-		System.out.println("---------------------------------------------");
-		System.out.println("Coach exigente:" + c3);
-		c3.add(p0);
-		c3.add(p1);
-		System.out.println("Coach exigente:" + c3);
-
-
-		//----------------------------
-		System.out.println("Participante aptos para batalla (ingles) del coach " + cc.getNombre() +": "+"\n"+cc.partxFiltro(cei2));
-		Criterio cgRock = new CriterioGenero("Rock");
-		System.out.println("Participante aptos para batalla (rock) del coach " + cc.getNombre() +": "+"\n"+cc.partxFiltro(cgRock));
-		Criterio cgIdioma = new CriterioIdioma("Aleman");
-		Criterio cgInst = new CriterioInstrumento("Guitarra");
-		System.out.println("Participante aptos para batalla (rock) del coach " + cc.getNombre() +": "+"\n"+cc.partxFiltro(new CriterioAND(cgIdioma, cgInst)));
-		Criterio cgEdad = new CriterioEdad(18);
-		System.out.println("Participante aptos para batalla (mayor edad) del coach " + cc.getNombre() +": "+"\n"+cc.partxFiltro(cgEdad));
-		
-		//------------------------------
-		Criterio ccc= new CriterioTemaMusical(tm0);
-		System.out.println("Canta tema Musical " + c0.getNombre() + ": " + "\n" + c0.getListado(ccc));
-
+		System.out.println("Coaches: " + prod.getCoaches());
 
 		//------------------------------ listados ------------------------------------------------------
+		System.out.println("---------------------------------------------");
 		System.out.println("Búsquedas");
 		//Para una mejor organización, cada coach/jurado desea poder obtener:
 		//● Un listado de todos los instrumentos que pueden tocar los participantes de su equipo (no
@@ -230,8 +221,8 @@ public class MainReality {
 		//● Prefieren un determinado género, por ejemplo “rock”...
 		Criterio cGenero = new CriterioGenero("Rock");
 		System.out.println("Todos los participantes del reality que prefieren el rock...");
-		ArrayList<ElementoReality> list = prod.getListado(cGenero);
-		for(ElementoReality e: list){
+		ArrayList<ElementoReality> list1 = prod.getListado(cGenero);
+		for(ElementoReality e: list1){
 			System.out.println(e.getNombre());
 		}
 
@@ -243,10 +234,10 @@ public class MainReality {
 
 		//● Canten en un determinado idioma y toquen un instrumento específico. Por ejemplo, “Aleman”
 		//y “Guitarra”
-		Criterio cIdEIn = new CriterioAnd(new CriterioIdioma("Aleman", new CriterioInstrumento("Guitarra")));
+		Criterio cIdEIn = new CriterioAnd(new CriterioIdioma("Aleman"), new CriterioInstrumento("Guitarra"));
 		System.out.println("Todos los participantes del reality que cantan en alemán y tocan la guitarra...");
-		ArrayList<ElementoReality> list = prod.getListado(cIdEIn);
-		for(ElementoReality e: list){
+		ArrayList<ElementoReality> list2 = prod.getListado(cIdEIn);
+		for(ElementoReality e: list2){
 			System.out.println(e.getNombre());
 		}
 
@@ -259,8 +250,8 @@ public class MainReality {
 		//● Todos los participantes mayores de una determinada edad.
 		Criterio cEdad = new CriterioEdad(15);
 		System.out.println("Todos los participantes del reality mayores de 15 años...");
-		ArrayList<ElementoReality> list = prod.getListado(cEdad);
-		for(ElementoReality e: list){
+		ArrayList<ElementoReality> list3 = prod.getListado(cEdad);
+		for(ElementoReality e: list3){
 			System.out.println(e.getNombre());
 		}
 
@@ -273,8 +264,8 @@ public class MainReality {
 		//● Puedan Interpretar un determinado Tema Musical
 		Criterio cTM = new CriterioTemaMusical(tm0);
 		System.out.println("Todos los participantes del reality que pueden cantar Rincón de luz...");
-		ArrayList<ElementoReality> list = prod.getListado(cTM);
-		for(ElementoReality e: list){
+		ArrayList<ElementoReality> list4 = prod.getListado(cTM);
+		for(ElementoReality e: list4){
 			System.out.println(e.getNombre());
 		}
 
@@ -288,11 +279,11 @@ public class MainReality {
 		//constantemente a los jurados. Se pueden agregar nuevos requerimientos de búsquedas así
 		//como combinación lógicas de los existentes.
 		Criterio cOrAndNot = new CriterioAnd(new CriterioOr(new CriterioIdioma("Ingles"), new CriterioGenero("Jazz")),
-												new CriterioNot("Piano"));
+												new CriterioNot(new CriterioInstrumento("Piano")));
 		System.out.println("Todos los participantes del reality que cantan en inglés o prefieran jazz y no toquen el " +
 				"piano...");
-		ArrayList<ElementoReality> list = prod.getListado(cOrAndNot);
-		for(ElementoReality e: list){
+		ArrayList<ElementoReality> list5 = prod.getListado(cOrAndNot);
+		for(ElementoReality e: list5){
 			System.out.println(e.getNombre());
 		}
 
@@ -307,35 +298,52 @@ public class MainReality {
 		System.out.println("Batallas");
 
 		//● Si la cantidad de instrumentos que toca es mayor que la de su oponente...
-		ArrayList batallantes = prod.getListado(new ComparadorIntrumento());
-		System.out.println("Batallan " + batallantes.get(0).getNombre() + batallantes.get(1).getNombre());
-		System.out.println("Toca más instrumentos y gana esta batalla: " + batallantes.get(0).getNombre());
+		ArrayList<ElementoReality> batallantes0 = prod.getListado(new ComparadorInstrumento());
+		System.out.println("Batallan " + batallantes0.get(0).getNombre() + batallantes0.get(1).getNombre());
+		System.out.println("Toca más instrumentos y gana esta batalla: " + batallantes0.get(0).getNombre());
 
 		//● Si la cantidad de géneros preferidos es menor que la de su oponente...
-		ArrayList batallantes = prod.getListado(new ComparadorGenero());
-		System.out.println("Batallan " + batallantes.get(0).getNombre() + batallantes.get(1).getNombre());
-		System.out.println("Prefiere menor cantidad de géneros y gana esta batalla: " + batallantes.get(0).getNombre());
+		ArrayList<ElementoReality> batallantes1 = prod.getListado(new ComparadorGenero());
+		System.out.println("Batallan " + batallantes1.get(0).getNombre() + batallantes1.get(1).getNombre());
+		System.out.println("Prefiere menor cantidad de géneros y gana esta batalla: " + batallantes1.get(0).getNombre());
 
 		//● Si la cantidad de instrumentos que toca es mayor a la de su rival, y en caso de ser iguales se desempata
 		//por que que tiene mayor edad...
-		ArrayList batallantes = prod.getListado(new ComparadorIntrumento(new ComparadorEdad));
-		System.out.println("Batallan " + batallantes.get(0).getNombre() + batallantes.get(1).getNombre());
+		ArrayList<ElementoReality> batallantes2 = prod.getListado(new ComparadorInstrumento(new ComparadorEdad()));
+		System.out.println("Batallan " + batallantes2.get(0).getNombre() + batallantes2.get(1).getNombre());
 		System.out.println("Toca más instrumentos o es mayor de edad y gana esta batalla: "
-																		+ batallantes.get(0).getNombre());
+																		+ batallantes2.get(0).getNombre());
 
 		//● Si la edad es mayor que la de su oponente y en caso de empate se decide por quién sabe más idiomas
   		//que su oponente...
-		ArrayList batallantes = prod.getListado(new ComparadorEdad(new ComparadorIdioma));
-		System.out.println("Batallan " + batallantes.get(0).getNombre() + batallantes.get(1).getNombre());
-		System.out.println("Su edad es mayor o sabe más idiomas y gana esta batalla: " + batallantes.get(0).getNombre());
+		ArrayList<ElementoReality> batallantes3 = prod.getListado(new ComparadorEdad(new ComparadorIdioma()));
+		System.out.println("Batallan " + batallantes3.get(0).getNombre() + batallantes3.get(1).getNombre());
+		System.out.println("Su edad es mayor o sabe más idiomas y gana esta batalla: " + batallantes3.get(0).getNombre());
 
 		//Los anteriores son algunos ejemplos de batallas entre dos participantes, puede ser incluso que haya
 		//más de dos formas encadenadas, es decir que si las dos primeras dan empate se decide por una
 		//tercera forma.
-		ArrayList batallantes = prod.getListado(new ComparadorEdad(new ComparadorIdioma(new ComparadorInstrumento)));
-		System.out.println("Batallan " + batallantes.get(0).getNombre() + batallantes.get(1).getNombre());
-		System.out.println("Gana esta batalla: " + batallantes.get(0).getNombre());
+		ArrayList<ElementoReality> batallantes4 = prod.getListado(new ComparadorEdad
+				(new ComparadorIdioma(new ComparadorInstrumento())));
+		System.out.println("Batallan " + batallantes4.get(0).getNombre() + batallantes4.get(1).getNombre());
+		System.out.println("Gana esta batalla: " + batallantes4.get(0).getNombre());
 
 
 	}
+
+	////----------------------------
+	//		System.out.println("Participante aptos para batalla (ingles) del coach " + cc.getNombre() +": "+"\n"+cc.partxFiltro(cei2));
+	//		Criterio cgRock = new CriterioGenero("Rock");
+	//		System.out.println("Participante aptos para batalla (rock) del coach " + cc.getNombre() +": "+"\n"+cc.partxFiltro(cgRock));
+	//		Criterio cgIdioma = new CriterioIdioma("Aleman");
+	//		Criterio cgInst = new CriterioInstrumento("Guitarra");
+	//		System.out.println("Participante aptos para batalla (rock) del coach " + cc.getNombre() +": "+"\n"+cc.partxFiltro(new CriterioAND(cgIdioma, cgInst)));
+	//		Criterio cgEdad = new CriterioEdad(18);
+	//		System.out.println("Participante aptos para batalla (mayor edad) del coach " + cc.getNombre() +": "+"\n"+cc.partxFiltro(cgEdad));
+	//
+
+	//	//------------------------------
+	//		System.out.println("---------------------------------------------");
+	//		Criterio ccc= new CriterioTemaMusical(tm0);
+	//		System.out.println("Canta tema Musical del equipo de " + c0.getNombre() + ": " + "\n" + c0.getListado(ccc));
 }

@@ -1,8 +1,11 @@
 package reality;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import criterios.Criterio;
 
-import Criterios.Criterio;
+import static java.util.Collections.reverseOrder;
 
 
 public class Produccion{
@@ -34,7 +37,7 @@ public class Produccion{
 		boolean added = false;
 		int i = 0;
 		while(i < coaches.size() && !added){
-			added = c.add(pp);
+			added = (coaches.get(i)).add(pp);
 			i++;
 		}
 	}
@@ -71,7 +74,7 @@ public class Produccion{
 			seleccionados.add(c.getBatallante(comp));
 		}
 		Collections.sort(seleccionados, comp);
-		Collections.reverseOrder(seleccionados);//Sort ordena por defecto de menor a mayor
+		Collections.sort(seleccionados, reverseOrder());//Sort ordena por defecto de menor a mayor
 		return seleccionados;
 	}
 	

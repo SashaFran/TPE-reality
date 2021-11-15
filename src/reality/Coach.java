@@ -2,7 +2,10 @@ package reality;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import Criterios.Criterio;
+import java.util.Comparator;
+import criterios.Criterio;
+
+import static java.util.Collections.reverseOrder;
 
 public class Coach extends ElementoCompuesto {
 
@@ -19,7 +22,7 @@ public class Coach extends ElementoCompuesto {
     */
 	public ArrayList<String> getGeneros(){
 		ArrayList<String> union = new ArrayList<>();
-		for(ElementoReality p: equipo){
+		for(ElementoReality p: this.participantes){
 			ArrayList<String> aux = p.getGeneros();
 			for(String s: aux){
 				if(!union.contains(s)){
@@ -37,7 +40,7 @@ public class Coach extends ElementoCompuesto {
 	 */
 	public ArrayList<ElementoReality> getListado(Criterio c) {
 		ArrayList<ElementoReality> listado = new ArrayList<>();
-		for (ElementoReality e: equipo){
+		for (ElementoReality e: this.participantes){
 			listado.addAll(e.getListado(c));
 		}
 		return listado;
@@ -56,17 +59,17 @@ public class Coach extends ElementoCompuesto {
 //		return listado;
 //	}
 
-	public ElementoReality getBatallantes(Comparator<ElementoReality> c){
+	public ElementoReality getBatallante(Comparator<ElementoReality> c){
 		Collections.sort(this.participantes, c);
-		Collections.reverseOrder(seleccionados);
+		Collections.sort(participantes, reverseOrder());
 		return this.participantes.get(0);
 	}
 
 	@Override
 	public String toString() {
-		return "\nNombre y Apellido: "+this.getNombre()+" "+this.getApellido()+
-				"\nCantidad de participantes en equipo: "+this.cantPart()
-				+"\nEquipo: "+"\n"+this.equipo;
+		return  "\nNombre: "+ this.getNombre() +
+				"\nCantidad de participantes en equipo: " + this.cantPart() +
+				"\nEquipo: " + "\n" + this.participantes;
 	}
 
 

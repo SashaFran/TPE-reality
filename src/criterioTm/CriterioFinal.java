@@ -1,4 +1,12 @@
 package criterioTm;
+
+import java.util.ArrayList;
+import criterios.Criterio;
+import criterios.CriterioInstrumento;
+import reality.ElementoReality;
+import reality.Participante;
+import reality.TemaMusical;
+
 /*
 4. Un tema puede ser interpretado por una banda/grupo/solista si puede cantar en el idioma del
 tema y al menos uno de los géneros está entre las preferencias del grupo/banda/solista.Sin
@@ -7,12 +15,7 @@ posea al menos un miembro que toque un instrumento de los necesarios para interp
 requisito es más restrictivo para otros temas, que requieren, por ejemplo, 2 miembros o incluso 3,
 que sepan tocar algún instrumento necesario para interpretar el tema...
  */
-import java.util.ArrayList;
-import Criterios.Criterio;
-import Criterios.CriterioInstrumento;
-import reality.ElementoReality;
-import reality.Participante;
-import reality.TemaMusical;
+
 
 public class CriterioFinal extends CriterioTm {
 
@@ -40,7 +43,7 @@ public class CriterioFinal extends CriterioTm {
 							participantes.add(p);
 					}
 				}
-				if (participantes.size() >= min)
+				if (participantes.size() >= minMiembros)
 					return true;
 			} else {
 				return true; //Dado que la lista de instrumentos puede estar vacía, es ese caso,

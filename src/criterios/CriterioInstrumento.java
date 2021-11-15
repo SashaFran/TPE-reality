@@ -1,4 +1,4 @@
-package Criterios;
+package criterios;
 
 import reality.ElementoReality;
 

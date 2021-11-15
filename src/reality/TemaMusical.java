@@ -5,6 +5,8 @@ Cada tema musical tiene un título, un idioma, una lista de géneros musicales a
 lista de instrumentos musicales necesarios para interpretarlo durante el concurso (puede ser vacía)...
  */
 import java.util.ArrayList;
+
+import criterioTm.CriterioMinimo;
 import criterioTm.CriterioTm;
 
 public class TemaMusical {

@@ -2,8 +2,7 @@ package reality;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-
-import Criterios.Criterio;
+import criterios.Criterio;
 
 
 public class Participante extends ElementoReality{

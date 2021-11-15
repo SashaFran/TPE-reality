@@ -1,4 +1,4 @@
-package Criterios;
+package criterios;
 /*
 Para las batallas, se desea que cada uno de los coachs/jurados pueda buscar entre sus participantes
 integrantes, bandas o grupos que :
@@ -7,11 +7,11 @@ y “Guitarra”...
  */
 import reality.ElementoReality;
 
-public class CriterioAND extends Criterio {
+public class CriterioAnd extends Criterio {
 	
 	private Criterio c1, c2;
 	
-	public CriterioAND(Criterio c1, Criterio c2){
+	public CriterioAnd(Criterio c1, Criterio c2){
 		this.c1 = c1;
 		this.c2 = c2;
 	}

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import Criterios.Criterio;
+import criterios.Criterio;
 
 public abstract class ElementoReality {
 
@@ -38,8 +38,12 @@ public abstract class ElementoReality {
 	}
 
 	public int getEdad(){
-		int promedio = this.getSumaEdades()/this.cantPart();
-		return promedio;
+		if(this.cantPart() != 0){
+			int promedio = this.getSumaEdades()/this.cantPart();
+			return promedio;
+		} else {
+			return 0;
+		}
 	}
 
 	public boolean contieneInstrumento(String instrumento) {

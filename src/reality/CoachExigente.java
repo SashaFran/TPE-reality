@@ -2,7 +2,7 @@ package reality;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import Criterios.Criterio;
+import criterios.Criterio;
 
 public class CoachExigente extends Coach {
 

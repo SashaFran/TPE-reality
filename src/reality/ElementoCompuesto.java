@@ -3,8 +3,7 @@ package reality;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-
-import Criterios.Criterio;
+import criterios.Criterio;
 
 public abstract class ElementoCompuesto extends ElementoReality {
 
@@ -15,7 +14,7 @@ public abstract class ElementoCompuesto extends ElementoReality {
 		Ahora cada coach/jurado tiene un listado de participantes asignados como equipo propio, este listado
 		puede incluir Bandas, Grupos o Integrantes solistas.
 	 */
-	private ArrayList<ElementoReality> participantes;
+	protected ArrayList<ElementoReality> participantes;
 
 
 	public ElementoCompuesto(String nombre) {
@@ -97,6 +96,8 @@ public abstract class ElementoCompuesto extends ElementoReality {
 			total += e.cantPart();
 		return total;
 	}
+	//En el caso del coach, retorna la cantidad de participantes repitiendo si están como solistas y en grupo
+
 
 	@Override
 	public ArrayList<Participante> getParticipantes(Criterio c) {
