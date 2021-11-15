@@ -34,6 +34,35 @@ public class Coach extends ElementoCompuesto {
 		return union;
 	}
 
+	@Override
+	public ArrayList<ElementoReality> getParticipantes() {    //sin repetidos
+		ArrayList<ElementoReality> copia = new ArrayList<>();
+		for (ElementoReality e: participantes){
+			ArrayList<ElementoReality> aux = e.getParticipantes();
+			for(ElementoReality o: aux){
+				if(!copia.contains(o)){
+					copia.add(o);
+				}
+			}
+		}
+		return copia;
+	}
+
+	@Override
+	public int getSumaEdades() {
+		int total = 0;
+		ArrayList<ElementoReality> parts = this.getParticipantes();
+		for(ElementoReality e: parts)
+			total += e.getSumaEdades();
+		return total;
+	}
+
+	@Override
+	public int cantPart() {
+		ArrayList<ElementoReality> parts = this.getParticipantes();
+		return parts.size();
+	}
+
 	/*
 		Para las batallas, se desea que cada uno de los coachs/jurados pueda buscar entre sus participantes
 		integrantes, bandas o grupos (... cumplan determinados criterios...)...
@@ -60,9 +89,10 @@ public class Coach extends ElementoCompuesto {
 //	}
 
 	public ElementoReality getBatallante(Comparator<ElementoReality> c){
-		Collections.sort(this.participantes, c);
-		Collections.sort(participantes, reverseOrder());
-		return this.participantes.get(0);
+		if(!this.getParticipantes().isEmpty()){
+			Collections.sort(this.getParticipantes(), reverseOrder(c));
+		}
+		return this.getParticipantes().get(0);
 	}
 
 	@Override

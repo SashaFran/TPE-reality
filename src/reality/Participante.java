@@ -86,6 +86,13 @@ public class Participante extends ElementoReality{
 	}
 
 	@Override
+	public ArrayList<ElementoReality> getParticipantes() {
+		ArrayList <ElementoReality> copia = new ArrayList<>();
+		copia.add(this);
+		return copia;
+	}
+
+	@Override
 	public ArrayList<Participante> getParticipantes(Criterio c) {
 		ArrayList <Participante> participante = new ArrayList<>();
 		if ( c.cumple(this))
@@ -95,7 +102,10 @@ public class Participante extends ElementoReality{
 
 	@Override
 	public String toString(){
-		return "Nombre y Apellido: "+ this.getNombre()+" "+this.getApellido()+"\n";
+		return "Nombre y Apellido: " + this.getNombre()+" "+this.getApellido() + "\n"
+//				+ "Edad: " + this.getEdad() + "\n" + "Generos: " + this.getGeneros() + "\n"
+//				+ "Idiomas: " + this.getIdiomas() + "\n" + "Instrumentos: " + this.getInstrumentos() + "\n"
+			;
 	}
 
 

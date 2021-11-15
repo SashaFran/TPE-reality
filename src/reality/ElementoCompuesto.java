@@ -74,31 +74,6 @@ public abstract class ElementoCompuesto extends ElementoReality {
 		return union;
 	}
 
-	/*
-	    ------- Participante:
-		Una banda o grupo posee un nombre, y una edad (la cual se calcula como
-		el promedio de las edades de cada uno de sus miembros)...
-	    ------- Coach:
-		● El promedio de edad de su equipo...
-	 */
-	@Override
-	public int getSumaEdades() {
-		int total = 0;
-		for (ElementoReality e: participantes)
-			total += e.getSumaEdades();
-		return total;
-	}
-
-	@Override
-	public int cantPart() {
-		int total = 0;
-		for (ElementoReality e: participantes)
-			total += e.cantPart();
-		return total;
-	}
-	//En el caso del coach, retorna la cantidad de participantes repitiendo si están como solistas y en grupo
-
-
 	@Override
 	public ArrayList<Participante> getParticipantes(Criterio c) {
 		ArrayList <Participante> participante = new ArrayList<>();

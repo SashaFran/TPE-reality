@@ -138,6 +138,17 @@ public class MainReality {
 
 		//------------------------------------------------------------------------------------------
 		System.out.println("---------------------------------------------");
+		System.out.println("Participantes");
+		ArrayList<ElementoReality> parts = prod.getParticipantes();
+		for(ElementoReality thi: parts){
+			System.out.println("Nombre y Apellido: " + thi.getNombre()+ "\n"
+				+ "Edad: " + thi.getEdad() + "\n" + "Generos: " + thi.getGeneros() + "\n"
+				+ "Idiomas: " + thi.getIdiomas() + "\n" + "Instrumentos: " + thi.getInstrumentos() + "\n");
+		}
+
+
+		//------------------------------------------------------------------------------------------
+		System.out.println("---------------------------------------------");
 		System.out.println("Grupos");
 		System.out.println("Cantidad de participantes, grupo " + g0.getNombre()+": "+g0.cantPart());
 		System.out.println("Cantidad de participantes, grupo " + g1.getNombre()+": "+g1.cantPart());

@@ -31,11 +31,21 @@ public abstract class ElementoReality {
 
 	public abstract ArrayList<Participante> getParticipantes(Criterio c);
 
+	public abstract ArrayList<ElementoReality> getParticipantes(); //agrego
+
 	public abstract String toString(); //ver si es necesario
 
 	public String getNombre(){
 		return this.nombre;
 	}
+
+	/*
+	    ------- Participante:
+		Una banda o grupo posee un nombre, y una edad (la cual se calcula como
+		el promedio de las edades de cada uno de sus miembros)...
+	    ------- Coach:
+		● El promedio de edad de su equipo...
+	 */
 
 	public int getEdad(){
 		if(this.cantPart() != 0){

@@ -26,12 +26,16 @@ public class ComparadorGenero implements Comparator <ElementoReality>{
 	@Override
 	public int compare(ElementoReality o1, ElementoReality o2) {
 		int aux = ((o2.getGeneros()).size())-((o1.getGeneros()).size());
-		if (aux == 0)
-			return siguiente.compare(o1, o2);
-		else if(aux < 0)
+		if(siguiente != null){
+			if (aux == 0)
+				return siguiente.compare(o1, o2);
+			else if(aux < 0)
 				return -1;
-	//		else			acá no es necesario el else?
-				return 1;
+			//		else			acá no es necesario el else?
+			return 1;
+		} else {
+			return aux;
+		}
 	}
 
 }

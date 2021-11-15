@@ -26,12 +26,16 @@ public class ComparadorInstrumento implements Comparator <ElementoReality>{
 	@Override
 	public int compare(ElementoReality o1, ElementoReality o2) {
 		int aux = ((o1.getInstrumentos()).size())-((o2.getInstrumentos()).size());
-		
-		if (aux ==0)
-			return siguiente.compare(o1, o2);
-		else if(aux < 0)
-			return -1;
-		else
+		if(this.siguiente != null){   //agrego
+			if (aux ==0)
+				return siguiente.compare(o1, o2);
+			else if(aux < 0)
+				return -1;
+			else
 				return 1;
+		} else {
+			return aux;
 		}
 	}
+
+}

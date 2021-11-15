@@ -37,6 +37,30 @@ public class Grupo extends ElementoCompuesto{
 		return generos;
 	}
 
+	@Override
+	public ArrayList<ElementoReality> getParticipantes() {
+		ArrayList <ElementoReality> copia = new ArrayList<>();
+		copia.addAll(this.participantes);
+		return copia;
+	}
+
+	@Override
+	public int getSumaEdades() {
+		int total = 0;
+		for (ElementoReality e: participantes)
+			total += e.getSumaEdades();
+		return total;
+	}
+
+	@Override
+	public int cantPart() {
+		int total = 0;
+		for (ElementoReality e: participantes)
+			total += e.cantPart();
+		return total;
+	}
+	//En el caso del coach, retornaría la cantidad de participantes repitiendo si están como solistas y en grupo
+
 	/*
 	Aclaraciones sobre la búsqueda de participantes:
 		1. Si una banda o grupo cumple con lo que está buscando el jurado, se debe retornar la banda
