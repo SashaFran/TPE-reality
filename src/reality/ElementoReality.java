@@ -5,14 +5,11 @@ import criterios.Criterio;
 
 public abstract class ElementoReality {
 
-
 	private String nombre;
-
 
 	public ElementoReality(String nombre) {
 		this.nombre = nombre;
 	}
-
 
 	public abstract ArrayList<String> getGeneros();
 
@@ -24,26 +21,13 @@ public abstract class ElementoReality {
 
 	public abstract int cantPart();
 
-	public abstract ArrayList<ElementoReality> getListado(Criterio c);  //cambio nombre metodo partxFilt
+	public abstract ArrayList<ElementoReality> buscar(Criterio c); 
+	
+	public abstract ArrayList<ElementoReality> getParticipantes();
 
-	public abstract ArrayList<Participante> getParticipantes(Criterio c);
+	public abstract ArrayList<Participante> buscarParticipantesSimples(Criterio c);
 
-	public abstract ArrayList<Participante> getParticipantes(); //agrego
-
-	public abstract ArrayList<ElementoReality> getParticipantesBatalla();
-
-	public abstract String toString(); //ver si es necesario
-
-	public String getNombre(){
-		return this.nombre;
-	}
-
-	/*  ------- Participante:
-		Una banda o grupo posee un nombre, y una edad (la cual se calcula como
-		el promedio de las edades de cada uno de sus miembros)...
-	    ------- Coach:
-		â— El promedio de edad de su equipo...
-	 */
+	public abstract ArrayList<Participante> getParticipantesSimples();
 
 	public int getEdad(){
 		if(this.cantPart() != 0){
@@ -52,6 +36,10 @@ public abstract class ElementoReality {
 		} else {
 			return 0;
 		}
+	}
+	
+	public String getNombre(){
+		return this.nombre;
 	}
 
 	public boolean contieneInstrumento(String instrumento) {

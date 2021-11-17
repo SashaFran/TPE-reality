@@ -1,11 +1,6 @@
 package criterios;
-/*
-Para las batallas, se desea que cada uno de los coachs/jurados pueda buscar entre sus participantes
-integrantes, bandas o grupos que :
-● Prefieren un determinado género, por ejemplo “rock”...
- */
-import reality.ElementoReality;
 
+import reality.ElementoReality;
 
 public class CriterioGenero extends Criterio{
 

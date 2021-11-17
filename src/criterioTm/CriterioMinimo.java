@@ -1,13 +1,9 @@
 package criterioTm;
+
 import java.util.ArrayList;
 import criterios.*;
 import reality.ElementoReality;
 import reality.TemaMusical;
-
-/*
-4. Un tema puede ser interpretado por una banda/grupo/solista si puede cantar en el idioma del
-tema y al menos uno de los géneros está entre las preferencias del grupo/banda/solista...
- */
 
 public class CriterioMinimo extends CriterioTm {
 	

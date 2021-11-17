@@ -15,4 +15,5 @@ public class CriterioInstrumento extends Criterio {
 		return p1.contieneInstrumento(instrumento);
 	}
 
+	
 }

@@ -1,9 +1,5 @@
 package criterios;
-/*
-Para las batallas, se desea que cada uno de los coachs/jurados pueda buscar entre sus participantes
-integrantes, bandas o grupos que :
-● Todos los participantes mayores de una determinada edad...
- */
+
 import reality.ElementoReality;
 
 public class CriterioEdad extends Criterio {

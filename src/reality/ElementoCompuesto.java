@@ -5,21 +5,12 @@ import criterios.Criterio;
 
 public abstract class ElementoCompuesto extends ElementoReality {
 
-	/*  ------- Participante:
-		... un grupo o banda posee una lista de miembros que los componen (pueden ser integrantes
-		o incluso sub bandas)...
-		------- Coach:
-		Ahora cada coach/jurado tiene un listado de participantes asignados como equipo propio, este listado
-		puede incluir Bandas, Grupos o Integrantes solistas.
-	 */
 	protected ArrayList<ElementoReality> participantes;
-
 
 	public ElementoCompuesto(String nombre) {
 		super(nombre);
 		this.participantes = new ArrayList<>();
 	}
-
 
 	public boolean add(ElementoReality e){
 		if(!participantes.contains(e)) {
@@ -30,13 +21,6 @@ public abstract class ElementoCompuesto extends ElementoReality {
 		}
 	}
 
-	/*  ------- Participante:
-		En el caso de los idiomas que pueden interpretar una banda o grupo se considera la uni√≥n
-		de los idiomas de todos sus miembros (no pueden existir repetidos)...
-	    ------ Coach:
-		‚ó Un listado de todos los idiomas que pueden cantar los participantes de su equipo (sin idiomas
-		repetidos)...
-	 */
 	@Override
 	public ArrayList<String> getIdiomas() {
 		ArrayList<String> union = new ArrayList<>();
@@ -51,13 +35,6 @@ public abstract class ElementoCompuesto extends ElementoReality {
 		return union;
 	}
 
-	/*  ------- Participante:
-		... lo mismo ocurre para los instrumentos que puede tocar una banda...
-	    --------Coach:
-		Para una mejor organizaci√≥n, cada coach/jurado desea poder obtener:
-		‚ó Un listado de todos los instrumentos que pueden tocar los participantes de su equipo (no
-		debe haber repetidos)...
-	 */
 	@Override
 	public ArrayList<String> getInstrumentos() {
 		ArrayList<String> union = new ArrayList<>();
@@ -73,26 +50,40 @@ public abstract class ElementoCompuesto extends ElementoReality {
 	}
 
 	@Override
-	public ArrayList<Participante> getParticipantes(Criterio c) {
+	public ArrayList<Participante> buscarParticipantesSimples(Criterio c) {
 		ArrayList <Participante> participante = new ArrayList<>();
 		for (ElementoReality e : participantes) {
-			participante.addAll(e.getParticipantes(c));
+			participante.addAll(e.buscarParticipantesSimples(c));
 		}
 		return participante;
 	}
 
 	@Override
-	public ArrayList<Participante> getParticipantes() {
-		ArrayList <Participante> copia = new ArrayList<>();
-		copia.addAll(this.getParticipantes());
+	public ArrayList<Participante> getParticipantesSimples() { 
+		ArrayList<Participante> copia = new ArrayList<>();
+		for (ElementoReality e: participantes){
+			ArrayList<Participante> aux = e.getParticipantesSimples();
+			for(Participante o: aux){
+				if(!copia.contains(o)){
+					copia.add(o);
+				}
+			}
+		}
 		return copia;
 	}
 	
 	@Override
-	public ArrayList<ElementoReality> getParticipantesBatalla() {
-		ArrayList <ElementoReality> copia = new ArrayList<>();
-		copia.addAll(this.getParticipantes());
-		return copia;
+	public int getSumaEdades() {
+		int total = 0;
+		ArrayList<Participante> parts = this.getParticipantesSimples();
+		for(ElementoReality e: parts)
+			total += e.getSumaEdades();
+		return total;
 	}
-
+	
+	@Override
+	public int cantPart() {
+		ArrayList<Participante> parts = this.getParticipantesSimples();
+		return parts.size();
+	}
 }

@@ -1,6 +1,5 @@
 package criterios;
 
-
 import reality.ElementoReality;
 
 public abstract class Criterio {

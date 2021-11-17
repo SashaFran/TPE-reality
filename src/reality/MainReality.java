@@ -1,7 +1,6 @@
 package reality;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import comparadores.*;
 import criterioTm.*;
 import criterios.*;
@@ -16,128 +15,175 @@ public class MainReality {
 
 		CriterioTm cTM0 = new CriterioFinal();
 		
-		Criterio cIdioma0 = new CriterioIdioma("Ingles");
-		Criterio cGenero0 = new CriterioGenero("Rock");
-		Criterio cInstrumento0 = new CriterioInstrumento("Guitarra");
-		Criterio cGenero1 = new CriterioGenero("Pop");
-		Criterio cInstrumento1 = new CriterioInstrumento("Bateria");
-		Criterio cIdioma1 = new CriterioIdioma("Espanol");
-		Criterio cIdioma2 = new CriterioIdioma("Ingles");
+		Criterio cIngles = new CriterioIdioma("Ingles");
+		Criterio cEsp = new CriterioIdioma("Espanol");
+		Criterio cPort = new CriterioIdioma("Portugues");
+		Criterio cRock = new CriterioGenero("Rock");
+		Criterio cPop = new CriterioGenero("Pop");
+		Criterio cGuitarra = new CriterioInstrumento("Guitarra");
+		Criterio cBateria = new CriterioInstrumento("Bateria");
 
 		Coach c0 = new Coach("C0");
 		Coach c1 = new Coach("C1");
-		//Ingles, Rock, Guitarra.
-		Coach c2 = new CoachExigente("C2", new CriterioAnd(cIdioma0, new CriterioAnd(cGenero0, cInstrumento0)));
-		Coach c3 = new CoachExigente("C3", new CriterioAnd(cGenero1, new CriterioAnd(cInstrumento1, new CriterioAnd(cIdioma1, cIdioma2))));
-
+		Coach c2 = new CoachExigente("CE2", new CriterioAnd(cIngles, new CriterioAnd(cRock, cGuitarra)));
+		CoachExigente c3 = new CoachExigente("CE3", new CriterioAnd(cPop, new CriterioAnd(cBateria, new CriterioAnd(cEsp, cPort))));
+		c3.setC(cEsp);
+		
 		Participante p0 = new Participante("N0", "A0", LocalDate.of(2000, 1, 02));
 		Participante p1 = new Participante("N1", "A1", LocalDate.of(2001, 2, 01));
 		Participante p2 = new Participante("N2", "A2", LocalDate.of(2002, 3, 03));
 		Participante p3 = new Participante("N3", "A3", LocalDate.of(2003, 4, 04));
-		Participante p4 = new Participante("N4", "A4", LocalDate.of(2004, 6, 07));
+		Participante p4 = new Participante("N4", "A4", LocalDate.of(2020, 6, 07));
 		Participante p5 = new Participante("N5", "A5", LocalDate.of(2000, 6, 07));
 		Participante p6 = new Participante("N6", "A6", LocalDate.of(1995, 6, 07));
-		
-		
+		Participante p7 = new Participante("SUPER", "P7", LocalDate.of(2010, 6, 07));
+		Participante p8 = new Participante("SUPER2", "P8", LocalDate.of(1900, 6, 07));
 
+		
 		Grupo g0 = new Grupo("G0");
 		Grupo g1 = new Grupo("G1");
 
 		// ------------ participantes -----------------------
 		p0.addGenero("Country");
-		p0.addGenero("Pop");
 		p0.addGenero("Pop-Rock");
+		p0.addGenero("Pop");
 		p0.addGenero("Rock");
-		p1.addGenero("Rock");
-		p1.addGenero("Pop-Rock");
-		p1.addGenero("Pop");
-		p2.addGenero("Metal");
-		p2.addGenero("Industrial");
-		p3.addGenero("Pop");
-		p4.addGenero("Pop-Rock");
-		p5.addGenero("Pop");
-		p5.addGenero("Pop-Rock");
-		p5.addGenero("Industrial");
-		p6.addGenero("Pop");
-		p6.addGenero("Pop-Rock");
-		p6.addGenero("Industrial");
-		p0.addIdioma("Ingles");
-		p0.addIdioma("Espanol");
-		p0.addIdioma("Italiano");
 		p0.addIdioma("Aleman");
-		p1.addIdioma("Ingles");
-		p1.addIdioma("Espanol");
-		p1.addIdioma("Italiano");
-		p2.addIdioma("Ingles");
-		p2.addIdioma("Frances");
-		p3.addIdioma("Ingles");
-		p3.addIdioma("Frances");
-		p4.addIdioma("Ingles");
-		p4.addIdioma("Frances");
-		p5.addIdioma("Ingles");
-		p5.addIdioma("Frances");
-		p6.addIdioma("Ingles");
-		p6.addIdioma("Frances");
+		p0.addIdioma("Espanol");
+		p0.addIdioma("Ingles");
+		p0.addIdioma("Italiano");
+		p0.addInstrumento("Bateria");
 		p0.addInstrumento("Guitarra");
 		p0.addInstrumento("Piano");
-		p0.addInstrumento("Bateria");
-		p1.addInstrumento("Piano");
+		
+		p1.addGenero("Pop-Rock");
+		p1.addGenero("Pop");
+		p1.addGenero("Rock");
+		p1.addIdioma("Espanol");
+		p1.addIdioma("Ingles");
+		p1.addIdioma("Italiano");
 		p1.addInstrumento("Guitarra");
+		p1.addInstrumento("Piano");
+		
+		p2.addGenero("Industrial");
+		p2.addGenero("Metal");
+		p2.addIdioma("Frances");
+		p2.addIdioma("Ingles");
 		p2.addInstrumento("Piano");
-		p3.addInstrumento("Piano");
+		
+		p3.addGenero("Pop");
+		p3.addIdioma("Frances");
+		p3.addIdioma("Ingles");
 		p3.addInstrumento("Bateria");
-		p4.addInstrumento("Piano");
+		p3.addInstrumento("Piano");
+		
+		p4.addGenero("Pop-Rock");
+		p4.addIdioma("Frances");
+		p4.addIdioma("Ingles");
 		p4.addInstrumento("Bateria");
-		p5.addInstrumento("Ukelele");
+		p4.addInstrumento("Piano");
+		
+		p5.addGenero("Industrial");
+		p5.addGenero("Pop-Rock");
+		p5.addGenero("Pop");
+		p5.addIdioma("Frances");
+		p5.addIdioma("Ingles");
 		p5.addInstrumento("Bajo");
-		p6.addInstrumento("Ukelele");
+		p5.addInstrumento("Ukelele");
+		
+		p6.addGenero("Industrial");
+		p6.addGenero("Pop-Rock");
+		p6.addGenero("Pop");
+		p6.addIdioma("Frances");
+		p6.addIdioma("Ingles");
 		p6.addInstrumento("Bajo");
+		p6.addInstrumento("Ukelele");
+		
+		p7.addGenero("Rock");
+		p7.addIdioma("Aleman");
+		p7.addIdioma("Espanol");
+		p7.addIdioma("Ingles");
+		p7.addIdioma("Italiano");
+		p7.addIdioma("Portugues");
+		p7.addIdioma("Frances");
+		p7.addIdioma("Catalan");
+		p7.addInstrumento("Bateria");
+		p7.addInstrumento("Guitarra");
+		p7.addInstrumento("Bajo");
+		p7.addInstrumento("Ukelele");
+		p7.addInstrumento("Pandereta");
+		p7.addInstrumento("Saxo");
+		p7.addInstrumento("Piano");
+		
+		
+		p8.addGenero("Industrial");
+		p8.addGenero("Metal");
+		p8.addGenero("Country");
+		p8.addGenero("Pop-Rock");
+		p8.addGenero("Pop");
+		p8.addGenero("Rock");
+		p8.addIdioma("Aleman");
+		p8.addIdioma("Espanol");
+		p8.addIdioma("Ingles");
+		p8.addIdioma("Italiano");
+		p8.addIdioma("Portugues");
+		p8.addIdioma("Frances");
+		p8.addIdioma("Catalan");
+		p8.addInstrumento("Bateria");
+		p8.addInstrumento("Guitarra");
+		p8.addInstrumento("Bajo");
+		p8.addInstrumento("Ukelele");
+		/*
+		 * p8.addInstrumento("Pandereta");
+		 * p8.addInstrumento("Saxo");
+		 * p8.addInstrumento("Piano");
+		Este comentario hace la diferencia si gana uno u otro entre los 4 coaches*/
 
 		tm0.addGenero("Rock");
+		tm0.addInstrumento("Guitarra");
+		tm0.setCriterio(cTM0);
+		
 		tm1.addGenero("Punk");
 		tm1.addGenero("Rock");
-		tm0.addInstrumento("Guitarra");
 		tm1.addInstrumento("Guitarra");
 		tm1.addInstrumento("Bateria");
-		tm0.setCriterio(cTM0);
 
 		g0.add(p0);
 		g0.add(p1);
 		g0.add(p3);
+		
 		g1.add(p5);
 		g1.add(p6);
-
-
 		
 		prod.addCoach(c0);
 		prod.addCoach(c1);
 		prod.addCoach(c2);
 		prod.addCoach(c3);
 		
-		prod.addParticipante(p0, c3);
-		prod.addParticipante(p0, c1);
-		
-		
 		prod.addParticipante(g0);
 		prod.addParticipante(g1);
-		prod.addParticipante(p0);
-		prod.addParticipante(p1);
-		prod.addParticipante(p2);
-		prod.addParticipante(p3);
-		prod.addParticipante(p4);
-		prod.addParticipante(p5);
-		prod.addParticipante(p6);
-
-		c0.add(g1);
-		prod.addParticipante(p5, c1);
-		
-
+		prod.addParticipante(p7, c2);
+		prod.addParticipante(p7, c1); //No lo agrega porque ya lo tiene otro coach
+		prod.addParticipante(p0);//No lo agrega porque ya lo tiene otro coach el grupo que lo contiene
+		prod.addParticipante(p1);//No lo agrega porque ya lo tiene otro coach el grupo que lo contiene
+		prod.addParticipante(p3);//No lo agrega porque ya lo tiene otro coach el grupo que lo contiene
+		prod.addParticipante(p4, c0);
+		prod.addParticipante(p5);//No lo agrega porque ya lo tiene otro coach el grupo que lo contiene
+		prod.addParticipante(p6);//No lo agrega porque ya lo tiene otro coach el grupo que lo contiene
 
 		// ------------------------------------------------------------------------------------------
 		System.out.println("---------------------------------------------");
-		System.out.println("Participantes");
+		System.out.println("Participantes de la produccion");
 		System.out.println(prod.getParticipantes());
-
+		
+		// ------------------------------------------------------------------------------------------
+		System.out.println("---------------------------------------------");
+		System.out.println("Participantes asignados a coaches");
+		System.out.println("Coach " + c0.getNombre() + ": " + "\n" + c0.getParticipantes());
+		System.out.println("Coach " + c1.getNombre() + ": " + "\n" + c1.getParticipantes());
+		System.out.println("Coach " + c2.getNombre() + ": " + "\n" + c2.getParticipantes());
+		System.out.println("Coach " + c3.getNombre() + ": " + "\n" + c3.getParticipantes());
+		
 		// ------------------------------------------------------------------------------------------
 		System.out.println("---------------------------------------------");
 		System.out.println("Grupos");
@@ -155,13 +201,14 @@ public class MainReality {
 
 		System.out.println("Promedio de edad, grupo " + g0.getNombre() + ": " + g0.getEdad());
 		System.out.println("Promedio de edad, grupo " + g1.getNombre() + ": " + g1.getEdad());
-
+		
+		// ------------------------------------------------------------------------------------------
 		// ------------------ prueba de aceptación coach exigente ------------
-//				System.out.println("---------------------------------------------");
-//				System.out.println("Coach exigente:" + c3);
-//				c3.add(p0);
-//				c3.add(p1);
-//				System.out.println("Coach exigente:" + c3);
+		System.out.println("---------------------------------------------");
+		System.out.println("Coach exigente:" + c3);
+		prod.addParticipante(p8, c3); // a este si lo agrega 
+		prod.addParticipante(p2, c3); // a este no lo agrega 
+		System.out.println("Coach exigente:" + c3);
 
 		// ------------------- detalle de equipos por
 		// coach----------------------------------------------
@@ -171,177 +218,178 @@ public class MainReality {
 		// ------------------------------ listados
 		// ------------------------------------------------------
 		System.out.println("---------------------------------------------");
-		System.out.println("Búsquedas");
-		// Para una mejor organización, cada coach/jurado desea poder obtener:
-		// - Un listado de todos los instrumentos que pueden tocar los participantes de
-		// su equipo (no
-		// debe haber repetidos)
+		System.out.println("Listados");
 		System.out.println("Instrumentos (sin repetidos) que pueden tocar los participantes de...");
 		System.out.println("Coach " + c0.getNombre() + ": " + c0.getInstrumentos());
 		System.out.println("Coach " + c1.getNombre() + ": " + c1.getInstrumentos());
 		System.out.println("Coach " + c2.getNombre() + ": " + c2.getInstrumentos());
 		System.out.println("Coach " + c3.getNombre() + ": " + c3.getInstrumentos());
 
-		// - Un listado de todos los idiomas que pueden cantar los participantes de su
-		// equipo (sin idiomas
-		// repetidos)
+		System.out.println("------------");
 		System.out.println("Idiomas (sin repetidos) que en pueden cantar los participantes de...");
 		System.out.println("Coach " + c0.getNombre() + ": " + c0.getIdiomas());
 		System.out.println("Coach " + c1.getNombre() + ": " + c1.getIdiomas());
 		System.out.println("Coach " + c2.getNombre() + ": " + c2.getIdiomas());
 		System.out.println("Coach " + c3.getNombre() + ": " + c3.getIdiomas());
 
-		// - Un listado de generos de preferencia de los participantes de su equipo (sin
-		// repetidos y
-		// ordenados alfabéticamente)
-		System.out.println("generos de preferencia (sin repetidos y alfabéticamente) de los participantes de...");
+		System.out.println("------------");
+		System.out.println("Generos de preferencia (sin repetidos y alfabéticamente) de los participantes de...");
 		System.out.println("Coach " + c0.getNombre() + ": " + c0.getGeneros());
 		System.out.println("Coach " + c1.getNombre() + ": " + c1.getGeneros());
 		System.out.println("Coach " + c2.getNombre() + ": " + c2.getGeneros());
 		System.out.println("Coach " + c3.getNombre() + ": " + c3.getGeneros());
 
-		// - El promedio de edad de su equipo
+		System.out.println("------------");
 		System.out.println("Promedio de edad del equipo de...");
 		System.out.println("Coach " + c0.getNombre() + ": " + c0.getEdad());
 		System.out.println("Coach " + c1.getNombre() + ": " + c1.getEdad());
 		System.out.println("Coach " + c2.getNombre() + ": " + c2.getEdad());
 		System.out.println("Coach " + c3.getNombre() + ": " + c3.getEdad());
 
-		// ----------------------------- búsquedas
-		// ------------------------------------------------------
-		// Para las batallas, se desea que cada uno de los coachs/jurados pueda buscar
-		// entre sus participantes
-		// integrantes, bandas o grupos que :
-		// - Canten en un determinado idioma, por ejemplo ...
-		Criterio cIdioma = new CriterioIdioma("ingles");
+		
+		System.out.println("---------------------------------------------");
+		System.out.println("Busquedas");
 		System.out.println("Todos los participantes del reality que cantan en ingles...");
-		ArrayList<ElementoReality> list = prod.getListado(cIdioma);
-		for (ElementoReality e : list) {
-			System.out.println(e.getNombre());
-		}
+		System.out.println(prod.buscar(cIngles));
 
+		System.out.println("------------");
 		System.out.println("Participantes que cantan en ingles de...");
-		System.out.println("Coach " + c0.getNombre() + ": " + c0.getListado(cIdioma));
-		System.out.println("Coach " + c1.getNombre() + ": " + c1.getListado(cIdioma));
-		System.out.println("Coach " + c2.getNombre() + ": " + c2.getListado(cIdioma));
-		System.out.println("Coach " + c3.getNombre() + ": " + c3.getListado(cIdioma));
+		System.out.println("Coach " + c0.getNombre() + ": " + c0.buscar(cIngles));
+		System.out.println("Coach " + c1.getNombre() + ": " + c1.buscar(cIngles));
+		System.out.println("Coach " + c2.getNombre() + ": " + c2.buscar(cIngles));
+		System.out.println("Coach " + c3.getNombre() + ": " + c3.buscar(cIngles));
 
-		// - Prefieren un determinado género, por ejemplo “rock�...
-		Criterio cGenero = new CriterioGenero("Rock");
+		System.out.println("------------");
 		System.out.println("Todos los participantes del reality que prefieren el rock...");
-		ArrayList<ElementoReality> list1 = prod.getListado(cGenero);
-		for (ElementoReality e : list1) {
-			System.out.println(e.getNombre());
-		}
+		System.out.println(prod.buscar(cRock));
 
 		System.out.println("Participantes que prefieren rock de...");
-		System.out.println("Coach " + c0.getNombre() + ": " + c0.getListado(cGenero));
-		System.out.println("Coach " + c1.getNombre() + ": " + c1.getListado(cGenero));
-		System.out.println("Coach " + c2.getNombre() + ": " + c2.getListado(cGenero));
-		System.out.println("Coach " + c3.getNombre() + ": " + c3.getListado(cGenero));
+		System.out.println("Coach " + c0.getNombre() + ": " + c0.buscar(cRock));
+		System.out.println("Coach " + c1.getNombre() + ": " + c1.buscar(cRock));
+		System.out.println("Coach " + c2.getNombre() + ": " + c2.buscar(cRock));
+		System.out.println("Coach " + c3.getNombre() + ": " + c3.buscar(cRock));
 
-		// - Canten en un determinado idioma y toquen un instrumento específico. Por
-		// ejemplo, “Aleman�
-		// y “Guitarra�
-		Criterio cIdEIn = new CriterioAnd(new CriterioIdioma("Aleman"), new CriterioInstrumento("Guitarra"));
+		System.out.println("------------");
+		Criterio cAlemanGuitarra = new CriterioAnd(new CriterioIdioma("Aleman"), new CriterioInstrumento("Guitarra"));
 		System.out.println("Todos los participantes del reality que cantan en alemán y tocan la guitarra...");
-		ArrayList<ElementoReality> list2 = prod.getListado(cIdEIn);
-		for (ElementoReality e : list2) {
-			System.out.println(e.getNombre());
-		}
+		System.out.println(prod.buscar(cAlemanGuitarra));
 
 		System.out.println("Participantes que cantan en alemán y tocan la guitarra de...");
-		System.out.println("Coach " + c0.getNombre() + ": " + c0.getListado(cIdEIn));
-		System.out.println("Coach " + c1.getNombre() + ": " + c1.getListado(cIdEIn));
-		System.out.println("Coach " + c2.getNombre() + ": " + c2.getListado(cIdEIn));
-		System.out.println("Coach " + c3.getNombre() + ": " + c3.getListado(cIdEIn));
+		System.out.println("Coach " + c0.getNombre() + ": " + c0.buscar(cAlemanGuitarra));
+		System.out.println("Coach " + c1.getNombre() + ": " + c1.buscar(cAlemanGuitarra));
+		System.out.println("Coach " + c2.getNombre() + ": " + c2.buscar(cAlemanGuitarra));
+		System.out.println("Coach " + c3.getNombre() + ": " + c3.buscar(cAlemanGuitarra));
 
-		// - Todos los participantes mayores de una determinada edad.
+		System.out.println("------------");
 		Criterio cEdad = new CriterioEdad(15);
 		System.out.println("Todos los participantes del reality mayores de 15 años...");
-		ArrayList<ElementoReality> list3 = prod.getListado(cEdad);
-		for (ElementoReality e : list3) {
-			System.out.println(e.getNombre());
-		}
+		System.out.println(prod.buscar(cEdad));
 
 		System.out.println("Participantes mayores de 15 años de...");
-		System.out.println("Coach " + c0.getNombre() + ": " + c0.getListado(cEdad));
-		System.out.println("Coach " + c1.getNombre() + ": " + c1.getListado(cEdad));
-		System.out.println("Coach " + c2.getNombre() + ": " + c2.getListado(cEdad));
-		System.out.println("Coach " + c3.getNombre() + ": " + c3.getListado(cEdad));
+		System.out.println("Coach " + c0.getNombre() + ": " + c0.buscar(cEdad));
+		System.out.println("Coach " + c1.getNombre() + ": " + c1.buscar(cEdad));
+		System.out.println("Coach " + c2.getNombre() + ": " + c2.buscar(cEdad));
+		System.out.println("Coach " + c3.getNombre() + ": " + c3.buscar(cEdad));
 
-		// - Puedan Interpretar un determinado Tema Musical
+		System.out.println("------------");
 		Criterio cTM = new CriterioTemaMusical(tm0);
 		System.out.println("Todos los participantes del reality que pueden cantar Rincón de luz...");
-		ArrayList<ElementoReality> list4 = prod.getListado(cTM);
-		for (ElementoReality e : list4) {
-			System.out.println(e.getNombre());
-		}
+		System.out.println(prod.buscar(cTM));
 
 		System.out.println("Participantes que pueden cantar Rincón de luz de...");
-		System.out.println("Coach " + c0.getNombre() + ": " + c0.getListado(cTM));
-		System.out.println("Coach " + c1.getNombre() + ": " + c1.getListado(cTM));
-		System.out.println("Coach " + c2.getNombre() + ": " + c2.getListado(cTM));
-		System.out.println("Coach " + c3.getNombre() + ": " + c3.getListado(cTM));
+		System.out.println("Coach " + c0.getNombre() + ": " + c0.buscar(cTM));
+		System.out.println("Coach " + c1.getNombre() + ": " + c1.buscar(cTM));
+		System.out.println("Coach " + c2.getNombre() + ": " + c2.buscar(cTM));
+		System.out.println("Coach " + c3.getNombre() + ": " + c3.buscar(cTM));
 
-
+		System.out.println("------------");
 		Criterio cOrAndNot = new CriterioAnd(new CriterioOr(new CriterioIdioma("Ingles"), new CriterioGenero("Jazz")),
 				new CriterioNot(new CriterioInstrumento("Piano")));
 		System.out.println("Todos los participantes del reality que cantan en ingles o prefieran jazz y no toquen el "
 				+ "piano...");
-		ArrayList<ElementoReality> list5 = prod.getListado(cOrAndNot);
-		for (ElementoReality e : list5) {
-			System.out.println(e.getNombre());
-		}
+		System.out.println(prod.buscar(cOrAndNot));
 
 		System.out.println("Participantes que cantan en ingles o prefieran jazz y no toquen el piano de...");
-		System.out.println("Coach " + c0.getNombre() + ": " + c0.getListado(cOrAndNot));
-		System.out.println("Coach " + c1.getNombre() + ": " + c1.getListado(cOrAndNot));
-		System.out.println("Coach " + c2.getNombre() + ": " + c2.getListado(cOrAndNot));
-		System.out.println("Coach " + c3.getNombre() + ": " + c3.getListado(cOrAndNot));
+		System.out.println("Coach " + c0.getNombre() + ": " + c0.buscar(cOrAndNot));
+		System.out.println("Coach " + c1.getNombre() + ": " + c1.buscar(cOrAndNot));
+		System.out.println("Coach " + c2.getNombre() + ": " + c2.buscar(cOrAndNot));
+		System.out.println("Coach " + c3.getNombre() + ": " + c3.buscar(cOrAndNot));
 
-		// ------------------------------ batallas
+		// ------------------------------ batallas 
 		// ------------------------------------------------------
+		System.out.println("---------------------------------------------");
 		System.out.println("Batallas");
-
+		System.out.println("---------------------------------------------");
 		// - Si la cantidad de instrumentos que toca es mayor que la de su oponente...
 		prod.setComparador(new ComparadorInstrumento());
-		ArrayList<ElementoReality> batallantes0 = prod.getListado();
-		System.out.println("Batallan participante: " + batallantes0.get(0).getNombre() +" y participante: "+ batallantes0.get(1).getNombre());
-		System.out.println("Toca mas instrumentos y gana esta batalla: "+   batallantes0.get(0).getNombre());
+		
+		System.out.println("Batalla entre el mejor de cada coach:");
+		System.out.println(prod.getPreseleccionados());
+		System.out.println("Toca mas instrumentos y gana esta batalla: "+   prod.batallar().getNombre());
+		
+		System.out.println("------------");
+		System.out.println("Batalla entre el mejor del coach c1 y c3");
+		System.out.println(prod.getPreseleccionado(c1));
+		System.out.println(prod.getPreseleccionado(c3));
+		System.out.println("Gana: "+prod.batallar(prod.getPreseleccionado(c1), prod.getPreseleccionado(c3)));
 
+		System.out.println("---------------------------------------------");
 		// - Si la cantidad de generos preferidos es menor que la de su oponente...
 		prod.setComparador(new ComparadorGenero());
-		ArrayList<ElementoReality> batallantes1 = prod.getListado();
-		System.out.println("Batallan participante: " + batallantes1.get(0).getNombre() +" y participante: "+ batallantes1.get(1).getNombre());
-		System.out.println("Prefiere menor cantidad de generos y gana esta batalla: " +  batallantes1.get(0).getNombre());
+		
+		System.out.println("Seleccion mejor de cada coach:");
+		System.out.println(prod.getPreseleccionados());
+		System.out.println("refiere menor cantidad de generos y gana esta batalla: "+   prod.batallar().getNombre());
+		
+		System.out.println("------------");
+		System.out.println("Seleccion coach c3 y c0");
+		System.out.println(prod.getPreseleccionado(c3));
+		System.out.println(prod.getPreseleccionado(c0));
+		System.out.println("Gana: "+prod.batallar(prod.getPreseleccionado(c3), prod.getPreseleccionado(c0)));
 
-		// - Si la cantidad de instrumentos que toca es mayor a la de su rival, y en
-		// caso de ser iguales se desempata
-		// por que que tiene mayor edad...
+		
+		System.out.println("---------------------------------------------");
+		// - Si la cantidad de instrumentos que toca es mayor a la de su rival, y en caso de ser iguales se desempata por que que tiene mayor edad...
 		prod.setComparador(new ComparadorInstrumento(new ComparadorEdad()));
-		ArrayList<ElementoReality> batallantes2 = prod.getListado();
-		System.out.println("Batallan participante: " + batallantes2.get(0).getNombre() +" y participante: "+batallantes2.get(1).getNombre());
-		System.out.println("Toca mas instrumentos o es mayor de edad y gana esta batalla: " + batallantes2.get(0).getNombre());
 
-		// - Si la edad es mayor que la de su oponente y en caso de empate se decide por
-		// quién sabe mas idiomas
-		// que su oponente...
+		System.out.println("Seleccion mejor de cada coach:");
+		System.out.println(prod.getPreseleccionados());
+		System.out.println("Toca mas instrumentos o es mayor de edad y gana esta batalla: "+   prod.batallar().getNombre());
+		
+		System.out.println("------------");
+		System.out.println("Seleccion coach c0 y c1");
+		System.out.println(prod.getPreseleccionado(c0));
+		System.out.println(prod.getPreseleccionado(c1));
+		System.out.println("Gana: "+prod.batallar(prod.getPreseleccionado(c0), prod.getPreseleccionado(c1)));
+
+		System.out.println("---------------------------------------------");
+		// - Si la edad es mayor que la de su oponente y en caso de empate se decide por quién sabe mas idiomas que su oponente...
 		prod.setComparador(new ComparadorEdad(new ComparadorIdioma()));
-		ArrayList<ElementoReality> batallantes3 = prod.getListado();
-		System.out.println("Batallan participante: " + batallantes3.get(0).getNombre() +" y participante: "+batallantes3.get(1).getNombre());
-		System.out.println("Su edad es mayor o sabe mas idiomas y gana esta batalla: " + batallantes3.get(0).getNombre());
+		System.out.println("Seleccion mejor de cada coach:");
+		System.out.println(prod.getPreseleccionados());
+		System.out.println("Su edad es mayor o sabe mas idiomas y gana esta batalla: "+   prod.batallar().getNombre());
+		
+		System.out.println("------------");
+		System.out.println("Seleccion coach c3 y c1");
+		System.out.println(prod.getPreseleccionado(c3));
+		System.out.println(prod.getPreseleccionado(c1));
+		System.out.println("Gana: "+prod.batallar(prod.getPreseleccionado(c3), prod.getPreseleccionado(c1)));
 
+		
+		System.out.println("---------------------------------------------");
 		// Los anteriores son algunos ejemplos de batallas entre dos participantes,
-		// puede ser incluso que haya
-		// mas de dos formas encadenadas, es decir que si las dos primeras dan empate se
-		// decide por una
-		// tercera forma.
+		// puede ser incluso que haya mas de dos formas encadenadas, es decir que 
+		// si las dos primeras dan empate se decide por una tercera forma.		prod.setComparador(new ComparadorEdad(new ComparadorIdioma()));
 		prod.setComparador(new ComparadorEdad(new ComparadorIdioma(new ComparadorInstrumento())));
-		ArrayList<ElementoReality> batallantes4 = prod.getListado();
-												//prod.getParticipanteBatalla();
-		System.out.println("Batallan participante: " + batallantes4.get(0).getNombre()+" y participante: " + batallantes4.get(1).getNombre());
-		System.out.println("Gana esta batalla: " + batallantes4.get(0).getNombre());
+		System.out.println("Seleccion mejor de cada coach:");
+		System.out.println(prod.getPreseleccionados());
+		System.out.println("Su edad es la mayor: "+   prod.batallar().getNombre());
+		
+		System.out.println("------------");
+		System.out.println("Seleccion coach c0 y c1");
+		System.out.println(prod.getPreseleccionado(c0));
+		System.out.println(prod.getPreseleccionado(c1));
+		System.out.println("Gana: "+prod.batallar(prod.getPreseleccionado(c0), prod.getPreseleccionado(c1)));
 
 	}
 
